@@ -1,5 +1,5 @@
 Blockly.JavaScript['takeoff'] = function(block) {
-  var altitude = Blockly.JavaScript.valueToCode(block, 'altitude', Blockly.JavaScript.ORDER_ATOMIC);
+  var altitude = block.getFieldValue("altitude");
   return "takeoff," + altitude + "|";
 };
 
@@ -36,9 +36,8 @@ Blockly.JavaScript['pitch_gimbal_to'] = function(block) {
 };
 
 Blockly.JavaScript['fly_forward'] = function(block) {
-  var direction = block.getFieldValue("direction");
-  var distance = Blockly.JavaScript.valueToCode(block, 'distance', Blockly.JavaScript.ORDER_ATOMIC);
-  return "::" + direction + "," + distance + "|";
+  var distance = block.getFieldValue("distance");
+  return "::fly_forward," + distance + "|";
 };
 
 Blockly.JavaScript['video'] = function(block) {
@@ -68,6 +67,6 @@ Blockly.JavaScript['loop'] = function(block) {
 };
 
 Blockly.JavaScript['change_altitude'] = function(block) {
-  var altitude = Blockly.JavaScript.valueToCode(block, 'altitude', Blockly.JavaScript.ORDER_ATOMIC);
+  var altitude = block.getFieldValue("altitude");
   return "::change_altitude," + altitude + "|";
 };
