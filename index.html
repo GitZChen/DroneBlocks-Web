@@ -147,8 +147,26 @@
     }
     workspace.addChangeListener(myUpdateFunction);
     
+    function getMobileOS() {
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      if( userAgent.match( /iPad/i ) || userAgent.match( /iPhone/i ) || userAgent.match( /iPod/i ) ) {
+        return 'iOS';
+      }
+      else if( userAgent.match( /Android/i ) ) {
+        return 'Android';
+      }
+      else {
+        return 'unknown';
+      }
+    }
+    
     function uploadMission() {
-      document.location.href='ios:' + Blockly.JavaScript.workspaceToCode(workspace);
+      var os = getMobileOS();
+      if(os == 'iOS') {
+        document.location.href='ios:' + Blockly.JavaScript.workspaceToCode(workspace);
+      } else if(os == 'Android') {
+      	Android.parseMission(Blockly.JavaScript.workspaceToCode(workspace));
+      }
     }
   </script>
 </body>
