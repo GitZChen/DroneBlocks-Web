@@ -4,7 +4,7 @@ Blockly.Blocks['land_home'] = {
         .appendField("return home and land");
     this.setInputsInline(true);
     this.setPreviousStatement(true);
-    this.setColour(300);
+    this.setColour(276);
     this.setTooltip('');
     this.setHelpUrl('http://www.example.com/');
   }

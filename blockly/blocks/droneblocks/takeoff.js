@@ -21,7 +21,7 @@ Blockly.Blocks['takeoff'] = {
     this.appendDummyInput().appendField("ft");
     this.setInputsInline(true);
     this.setNextStatement(true);
-    this.setColour(120);
+    this.setColour(210);
     this.setTooltip('');
     this.setHelpUrl('http://www.example.com/');
   }

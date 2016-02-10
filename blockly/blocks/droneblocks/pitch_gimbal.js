@@ -6,7 +6,7 @@ Blockly.Blocks['pitch_gimbal_to'] = {
         .appendField("degrees");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(260);
+    this.setColour(10);
     this.setTooltip('');
     this.setHelpUrl('http://www.example.com/');
   }

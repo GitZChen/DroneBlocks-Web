@@ -1,0 +1,69 @@
+div#\:1 {
+  background-color: #115CA6 !important;
+  padding: 10px !important;
+  color: #FFFFFF !important;
+}
+
+div#\:1 .blocklyTreeRow:hover {
+  background-color: #00133B !important;
+}
+
+div#\:1 .blocklyTreeSelected {
+  background-color: #00133B !important;
+}
+
+div#\:2 {
+  background-color: #74A611 !important;
+  padding: 10px !important;
+  color: #FFFFFF !important;
+}
+
+div#\:2 .blocklyTreeRow:hover {
+  background-color: #4C8500 !important;
+}
+
+div#\:2 .blocklyTreeSelected {
+  background-color: #4C8500 !important;
+}
+
+div#\:3 {
+  background-color: #1192A6 !important;
+  padding: 10px !important;
+  color: #FFFFFF !important;
+}
+
+div#\:3 .blocklyTreeRow:hover {
+  background-color: #0073BA !important;
+}
+
+div#\:3 .blocklyTreeSelected {
+  background-color: #0073BA !important;
+}
+
+div#\:4 {
+  background-color: #A62A11 !important;
+  padding: 10px !important;
+  color: #FFFFFF !important;
+}
+
+div#\:4 .blocklyTreeRow:hover {
+  background-color: #8A0F0F !important;
+}
+
+div#\:4 .blocklyTreeSelected {
+  background-color: #8A0F0F !important;
+}
+
+div#\:5 {
+  background-color: #6A11A6 !important;
+  padding: 10px !important;
+  color: #FFFFFF !important;
+}
+
+div#\:5 .blocklyTreeRow:hover {
+  background-color: #490C72 !important;
+}
+
+div#\:5 .blocklyTreeSelected {
+  background-color: #490C72 !important;
+}

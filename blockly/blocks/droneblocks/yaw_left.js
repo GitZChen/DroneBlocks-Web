@@ -6,7 +6,7 @@ Blockly.Blocks['yaw_left'] = {
         .appendField("degrees");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(195);
+    this.setColour(90);
     this.setTooltip('');
     this.setHelpUrl('http://www.example.com/');
   }
