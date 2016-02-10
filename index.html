@@ -54,7 +54,7 @@
       <td id="blocklyArea">
       </td>
     </tr>
-    <tr><td><textarea style="width: 300px; height: 50px;" id="textarea"></textarea></td></tr>
+    <!--<tr><td><textarea style="width: 300px; height: 50px;" id="textarea"></textarea></td></tr>-->
     <tr><td style="text-align:right"><a href="#" onclick="uploadMission();">Start Mission</a></td></tr>
   </table>
 
@@ -112,9 +112,6 @@
       <block type="land"></block>
       <block type="land_home"></block>
     </category>
-    
-    
-    
   </xml>
 
   <script>
@@ -142,11 +139,11 @@
     window.addEventListener('resize', onresize, false);
     onresize();
     
-    function myUpdateFunction() {
+    /*function myUpdateFunction() {
       var code = Blockly.JavaScript.workspaceToCode(workspace);
       document.getElementById('textarea').value = code;
     }
-    workspace.addChangeListener(myUpdateFunction);
+    workspace.addChangeListener(myUpdateFunction);*/
     
     function getMobileOS() {
       var userAgent = navigator.userAgent || navigator.vendor || window.opera;
