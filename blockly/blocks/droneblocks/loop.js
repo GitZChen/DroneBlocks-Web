@@ -15,7 +15,7 @@ Blockly.Blocks['loop'] = {
       ],
       "previousStatement": null,
       "nextStatement": null,
-      "colour": 188,
+      "colour": '#E9C46A',
       "helpUrl": Blockly.Msg.CONTROLS_REPEAT_HELPURL
     });
     this.appendStatementInput('DO')

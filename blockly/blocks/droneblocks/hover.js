@@ -6,7 +6,7 @@ Blockly.Blocks['hover'] = {
         .appendField("seconds");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(90);
+    this.setColour('#2A9D8F');
     this.setTooltip('');
     this.setHelpUrl('http://www.example.com/');
   }

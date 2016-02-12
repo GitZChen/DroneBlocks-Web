@@ -4,7 +4,7 @@ Blockly.Blocks['photo'] = {
         .appendField("take photo");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(10);
+    this.setColour('#F4A261');
     this.setTooltip('');
     this.setHelpUrl('http://www.example.com/');
   }

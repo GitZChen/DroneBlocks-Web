@@ -6,7 +6,7 @@ Blockly.Blocks['fly_forward'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(90);
+    this.setColour('#2A9D8F');
     this.setTooltip('');
     this.setHelpUrl('http://www.example.com/');
   }
