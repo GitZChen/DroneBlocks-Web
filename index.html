@@ -166,6 +166,30 @@
       	Android.parseMission(Blockly.JavaScript.workspaceToCode(workspace));
       }
     }
+    
+    var blockIndex = 0;
+    
+    function highlightBlock(id) {
+      var id = parseInt(id); // This is the index of the waypoint block we're highlighting
+      var blocks = Blockly.mainWorkspace.getAllBlocks();
+      
+      // Now let's loop until we find the next waypoint
+      for(var i=blockIndex; i<=blocks.length; i++) {
+        var type = blocks[i].type;
+        
+        blockIndex++;
+        
+        if(type == "takeoff" || type == "fly_forward" || type == "change_altitude" || type == "land") {
+          blocks[i].select();
+          
+          if(type == "land") {
+            blockIndex = 0; // Reset the block index
+          }
+          
+          break;
+        }
+      }
+    }
   </script>
 </body>
 </html>
