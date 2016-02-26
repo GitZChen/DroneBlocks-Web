@@ -7,6 +7,7 @@
   <script src="./blockly/blockly_compressed.js"></script>
   <script src="./blockly/blocks_compressed.js"></script>
   <script src="./blockly/javascript_compressed.js"></script>
+  <script src="./blockly/storage.js"></script>
   <script src="./blockly/generators/javascript/droneblocks.js"></script>
   <script src="./blockly/msg/js/en.js"></script>
   <script src="./blockly/blocks/droneblocks/takeoff.js"></script>
@@ -139,12 +140,6 @@
     window.addEventListener('resize', onresize, false);
     onresize();
     
-    /*function myUpdateFunction() {
-      var code = Blockly.JavaScript.workspaceToCode(workspace);
-      document.getElementById('textarea').value = code;
-    }
-    workspace.addChangeListener(myUpdateFunction);*/
-    
     function getMobileOS() {
       var userAgent = navigator.userAgent || navigator.vendor || window.opera;
       if( userAgent.match( /iPad/i ) || userAgent.match( /iPhone/i ) || userAgent.match( /iPod/i ) ) {
@@ -190,6 +185,21 @@
         }
       }
     }
+    
+    function highlightBlockFromAndroid(id) {
+      var id = parseInt(id);
+      var blocks = Blockly.mainWorkspace.getAllBlocks();
+      blocks[id].select();
+    }
+    
+    // Listen for workspace changes and save blocks
+    function saveBlocks() {
+      BlocklyStorage.backupBlocks_(Blockly.getMainWorkspace());
+    }
+    workspace.addChangeListener(saveBlocks);
+    
+    // Load last set of blocks
+    window.setTimeout(BlocklyStorage.restoreBlocks, 1000);
   </script>
 </body>
 </html>
