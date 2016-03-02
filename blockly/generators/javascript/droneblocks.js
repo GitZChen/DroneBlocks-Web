@@ -55,7 +55,7 @@ Blockly.JavaScript['orbit'] = function(block) {
 };
 
 Blockly.JavaScript['loop'] = function(block) {
-  var repeats = Blockly.JavaScript.valueToCode(block, 'TIMES', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
+  var repeats = Number(block.getFieldValue('TIMES'));
   var branch = Blockly.JavaScript.statementToCode(block, 'DO').trim();
   var code = "";
   
