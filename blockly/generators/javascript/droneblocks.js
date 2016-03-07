@@ -1,6 +1,6 @@
 Blockly.JavaScript['takeoff'] = function(block) {
   var altitude = block.getFieldValue("altitude");
-  return "takeoff," + altitude + "|";
+  return ":::takeoff," + altitude + "|";
 };
 
 Blockly.JavaScript['land'] = function(block) {
@@ -36,8 +36,12 @@ Blockly.JavaScript['pitch_gimbal_to'] = function(block) {
 };
 
 Blockly.JavaScript['fly_forward'] = function(block) {
-  var distance = block.getFieldValue("distance");
-  return "::fly_forward," + distance + "|";
+  var distance = Blockly.JavaScript.valueToCode(block, 'distance', Blockly.JavaScript.ORDER_NONE);
+  var separator = ",";
+  if(isNaN(parseInt(distance))) {
+    separator = "->";
+  } 
+  return "::fly_forward" + separator + distance + "|";
 };
 
 Blockly.JavaScript['video'] = function(block) {

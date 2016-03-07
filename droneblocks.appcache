@@ -22,6 +22,7 @@ blockly/blocks/droneblocks/orbit.js
 blockly/blocks/droneblocks/loop.js
 blockly/blocks/droneblocks/follow.js
 droneblocks.css
+droneblocks.js
 blockly/media/sprites.png
 blockly/media/click.mp3
 blockly/media/disconnect.wav

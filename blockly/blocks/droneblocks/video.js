@@ -5,7 +5,7 @@ Blockly.Blocks['video'] = {
         .appendField("recording video");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour('#F4A261');
+    this.setColour('#64c2d9');
     this.setTooltip('');
     this.setHelpUrl('http://www.example.com/');
   }
