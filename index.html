@@ -11,6 +11,7 @@
   <script src="./blockly/generators/javascript/droneblocks.js"></script>
   <script src="./blockly/msg/js/en.js"></script>
   <script src="./blockly/blocks/droneblocks/takeoff.js"></script>
+  <script src="./blockly/blocks/droneblocks/flight_path.js"></script>
   <script src="./blockly/blocks/droneblocks/land.js"></script>
   <script src="./blockly/blocks/droneblocks/land_home.js"></script>
   <script src="./blockly/blocks/droneblocks/hover.js"></script>
@@ -64,6 +65,7 @@
   <xml id="toolbox" style="display: none">
     <category name="Takeoff">
       <block type="takeoff"></block>
+      <block type="flight_path"></block>
     </category>
     <category name="Navigation">
       <block type="fly_forward">
@@ -73,10 +75,34 @@
           </block>
         </value>
       </block>
-      <block type="change_altitude"></block>
-      <block type="hover"></block>
-      <block type="yaw_right"></block>
-      <block type="yaw_left"></block>
+      <block type="change_altitude">
+        <value name="altitude">
+          <block type="math_number">
+            <field name="NUM">25</field>
+          </block>
+        </value>
+      </block>
+      <block type="hover">
+        <value name="duration">
+          <block type="math_number">
+            <field name="NUM">5</field>
+          </block>
+        </value>
+      </block>
+      <block type="yaw_right">
+        <value name="angle">
+          <block type="math_number">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+      </block>
+      <block type="yaw_left">
+        <value name="angle">
+          <block type="math_number">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+      </block>
     </category>
     <category name="Camera">
       <block type="pitch_gimbal_to"></block>
@@ -98,7 +124,9 @@
       <block type="follow"></block>
     </category>-->
     <category name="Math">
-      <block type="math_number"></block>
+      <block type="math_number">
+        <field name="NUM">10</field>
+      </block>
       <block type="math_arithmetic"></block>
     </category>
     <category name="Variables" custom="VARIABLE">
@@ -109,6 +137,7 @@
       <block type="land_home"></block>
     </category>
   </xml>
+
   <script src="./droneblocks.js"></script>
 </body>
 </html>
