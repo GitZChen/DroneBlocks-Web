@@ -8,6 +8,11 @@ Blockly.JavaScript['flight_path'] = function(block) {
   return 'mission+="flight_path,' + path + '|";';
 };
 
+Blockly.JavaScript['heading_mode'] = function(block) {
+  var mode = block.getFieldValue("mode");
+  return 'mission+="heading_mode,' + mode + '|";';
+};
+
 Blockly.JavaScript['land'] = function(block) {
   return 'mission+="land";';  
 };

@@ -5,7 +5,6 @@ Blockly.Blocks['photo_interval'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(260);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
+    this.setHelpUrl('https://github.com/dbaldwin/DroneBlocks-Web/wiki/Block-Definitions');
   }
 };

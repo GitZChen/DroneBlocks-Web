@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width; initial-scale=1.25; maximum-scale=1.25; user-scalable=0;" />
-  <title>DroneBlocks POC</title>
+  <title>DroneBlocks</title>
   <script src="./blockly/blockly_compressed.js"></script>
   <script src="./blockly/blocks_compressed.js"></script>
   <script src="./blockly/javascript_compressed.js"></script>
@@ -12,6 +12,7 @@
   <script src="./blockly/msg/js/en.js"></script>
   <script src="./blockly/blocks/droneblocks/takeoff.js"></script>
   <script src="./blockly/blocks/droneblocks/flight_path.js"></script>
+  <script src="./blockly/blocks/droneblocks/heading_mode.js"></script>
   <script src="./blockly/blocks/droneblocks/land.js"></script>
   <script src="./blockly/blocks/droneblocks/land_home.js"></script>
   <script src="./blockly/blocks/droneblocks/hover.js"></script>
@@ -26,28 +27,6 @@
   <script src="./blockly/blocks/droneblocks/orbit.js"></script>
   <script src="./blockly/blocks/droneblocks/loop.js"></script>
   <script src="./blockly/blocks/droneblocks/follow.js"></script>
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
-    body {
-      background-color: #fff;
-      font-family: sans-serif;
-      overflow: hidden;
-    }
-    h1 {
-      font-weight: normal;
-      font-size: 140%;
-    }
-    table {
-      height: 100%;
-      width: 100%;
-    }
-    #blocklyArea {
-      height: 99%;
-    }
-  </style>
   <link rel="stylesheet" type="text/css" href="droneblocks.css">
 </head>
 <body>
@@ -56,8 +35,8 @@
       <td id="blocklyArea">
       </td>
     </tr>
-    <tr><td><textarea style="width: 300px; height: 150px;" id="textarea"></textarea></td></tr>
-    <tr><td style="text-align:right"><a href="#" onclick="uploadMission();">Start Mission</a></td></tr>
+    <!--<tr><td><textarea style="width: 300px; height: 150px;" id="textarea"></textarea></td></tr>-->
+    <tr><td style="text-align:right"><a href="#" id="startButton" onclick="uploadMission();">Start Mission</a></td></tr>
   </table>
 
   <div id="blocklyDiv" style="position: absolute"></div>
@@ -66,6 +45,7 @@
     <category name="Takeoff">
       <block type="takeoff"></block>
       <block type="flight_path"></block>
+      <block type="heading_mode"></block>
     </category>
     <category name="Navigation">
       <block type="fly_forward">

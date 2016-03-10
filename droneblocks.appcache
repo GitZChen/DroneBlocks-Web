@@ -8,6 +8,7 @@ blockly/generators/javascript/droneblocks.js
 blockly/msg/js/en.js
 blockly/blocks/droneblocks/takeoff.js
 blockly/blocks/droneblocks/flight_path.js
+blockly/blocks/droneblocks/heading_mode.js
 blockly/blocks/droneblocks/land.js
 blockly/blocks/droneblocks/land_home.js
 blockly/blocks/droneblocks/hover.js

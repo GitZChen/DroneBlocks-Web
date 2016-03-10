@@ -40,11 +40,9 @@ function uploadMission() {
   var code = Blockly.JavaScript.workspaceToCode(workspace);
   code = eval(code);
   
-  alert(code);
-  
   var os = getMobileOS();
   if(os == 'iOS') {
-    document.location.href='ios:' + Blockly.JavaScript.workspaceToCode(workspace);
+    window.webkit.messageHandlers.observe.postMessage(code);
   } else if(os == 'Android') {
   	Android.confirmMission(Blockly.JavaScript.workspaceToCode(workspace));
   }
@@ -85,7 +83,7 @@ function saveBlocks() {
   BlocklyStorage.backupBlocks_(Blockly.getMainWorkspace());
   
   // Update text field for debugging
-  document.getElementById("textarea").value = Blockly.JavaScript.workspaceToCode(workspace);
+  //document.getElementById("textarea").value = Blockly.JavaScript.workspaceToCode(workspace);
 }
 workspace.addChangeListener(saveBlocks);
 

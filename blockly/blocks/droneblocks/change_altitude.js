@@ -9,6 +9,6 @@ Blockly.Blocks['change_altitude'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour('#2A9D8F');
-    this.setTooltip('');
+    this.setHelpUrl('https://github.com/dbaldwin/DroneBlocks-Web/wiki/Block-Definitions');
   }
 };

@@ -6,6 +6,6 @@ Blockly.Blocks['land_home'] = {
     this.setPreviousStatement(true);
     this.setColour('#E76F51');
     this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
+    this.setHelpUrl('https://github.com/dbaldwin/DroneBlocks-Web/wiki/Block-Definitions');
   }
 };
