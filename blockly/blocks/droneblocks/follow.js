@@ -8,6 +8,5 @@ Blockly.Blocks['follow'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(330);
-    this.setHelpUrl('https://github.com/dbaldwin/DroneBlocks-Web/wiki/Block-Definitions');
   }
 };

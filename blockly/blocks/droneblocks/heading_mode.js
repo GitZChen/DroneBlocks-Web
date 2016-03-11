@@ -6,6 +6,5 @@ Blockly.Blocks['heading_mode'] = {
     this.setNextStatement(true);
     this.setPreviousStatement(true);
     this.setColour('#264653');
-    this.setHelpUrl('https://github.com/dbaldwin/DroneBlocks-Web/wiki/Block-Definitions');
   }
 };

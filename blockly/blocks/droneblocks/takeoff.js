@@ -11,7 +11,6 @@
     this.setNextStatement(true);
     this.setColour(120);
     this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
   }
 };*/
 Blockly.Blocks['takeoff'] = {
@@ -23,6 +22,5 @@ Blockly.Blocks['takeoff'] = {
     this.setNextStatement(true);
     this.setColour('#264653');
     this.setTooltip('');
-    this.setHelpUrl('https://github.com/dbaldwin/DroneBlocks-Web/wiki/Block-Definitions');
   }
 };

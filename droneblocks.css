@@ -26,6 +26,13 @@ table {
   text-decoration: none;
   color: #FFFFFF;
 }
+
+#helpButton {
+  background-color: #7FB800;
+  padding: 10px;
+  text-decoration: none;
+  color: #FFFFFF;
+}
 /* End general styling */
 
 /* Begin block category styling */
