@@ -42,8 +42,13 @@ Blockly.JavaScript['yaw_right'] = function(block) {
 };
 
 Blockly.JavaScript['yaw_left'] = function(block) {
-  var angle = block.getFieldValue("angle");
-  return 'mission+="yaw_left,' + angle + '|";';
+  var angle = Blockly.JavaScript.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_NONE);
+  
+  if(isNaN(parseInt(angle))) {
+    return 'mission+="yaw_left," + eval(' + angle + ') + "|";';
+  } else {
+    return 'mission+="yaw_left,' + angle + '|";';
+  }
 };
 
 Blockly.JavaScript['photo'] = function(block) {
