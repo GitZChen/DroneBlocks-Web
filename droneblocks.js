@@ -1,3 +1,5 @@
+var isCodeViewOpen = false;
+
 var blocklyArea = document.getElementById('blocklyArea');
 var blocklyDiv = document.getElementById('blocklyDiv');
 var workspace = Blockly.inject(blocklyDiv,
@@ -48,6 +50,21 @@ function uploadMission() {
   }
 }
 
+function showCodeView() {
+  
+  isCodeViewOpen = true;
+  
+  document.getElementById("blocklyArea").className = "half";
+  var codeView = document.getElementById("codeView");
+  codeView.className = "block";
+  
+  var code = document.getElementById("code");
+  code.innerHTML = PR.prettyPrintOne(Blockly.Python.workspaceToCode());
+  
+  window.dispatchEvent(new Event('resize'));
+  
+}
+
 var blockIndex = 0;
 
 function highlightBlock(id) {
@@ -82,6 +99,10 @@ function highlightBlockFromAndroid(id) {
 function saveBlocks() {
   BlocklyStorage.backupBlocks_(Blockly.getMainWorkspace());
   
+  if(isCodeViewOpen) {
+    document.getElementById("code").innerHTML = PR.prettyPrintOne(Blockly.Python.workspaceToCode());
+  }
+  
   // Update text field for debugging
   //document.getElementById("textarea").value = Blockly.JavaScript.workspaceToCode(workspace);
 }
@@ -90,13 +111,7 @@ workspace.addChangeListener(saveBlocks);
 // Load last set of blocks
 window.setTimeout(BlocklyStorage.restoreBlocks, 1000);
 
-/*
-var x;
-var y;
-
-
-:::takeoff,25|x = 30;
-y = 5;
-y = y + 10;
-::fly_forward,x|yaw_right,180|::fly_forward,y|land
-*/
+// Initialize some elements
+window.onload = function() {
+  document.getElementById("codeView").className = "hidden";
+}

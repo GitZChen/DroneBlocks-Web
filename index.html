@@ -7,8 +7,11 @@
   <script src="./blockly/blockly_compressed.js"></script>
   <script src="./blockly/blocks_compressed.js"></script>
   <script src="./blockly/javascript_compressed.js"></script>
+  <script src="./blockly/python_compressed.js"></script>
   <script src="./blockly/storage.js"></script>
+  <script src="./blockly/run_prettify.js"></script>
   <script src="./blockly/generators/javascript/droneblocks.js"></script>
+  <script src="./blockly/generators/python/droneblocks.js"></script>
   <script src="./blockly/msg/js/en.js"></script>
   <script src="./blockly/blocks/droneblocks/takeoff.js"></script>
   <script src="./blockly/blocks/droneblocks/flight_path.js"></script>
@@ -27,13 +30,16 @@
   <script src="./blockly/blocks/droneblocks/loop.js"></script>
   <script src="./blockly/blocks/droneblocks/follow.js"></script>
   <link rel="stylesheet" type="text/css" href="droneblocks.css">
+  <link rel="stylesheet" type="text/css" href="blockly/prettify.css">
 </head>
 <body>
   <div id="blocklyArea"></div>
-  <div id="codeView">var test;</div>
+  <div id="codeView">
+    <pre id="code" class="prettyprint linenums"></pre>
+  </div>
   
   <div id="buttons">&nbsp;
-    <div id="codeViewButton"><a href="#" onclick="showCode();">Code View</a></div>
+    <div id="codeViewButton"><a href="#" onclick="showCodeView();">Code View</a></div>
     <div id="previewButton"><a href="#" onclick="uploadMission();">Preview Mission</a></div>
   </div>
 
