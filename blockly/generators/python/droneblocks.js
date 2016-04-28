@@ -22,17 +22,17 @@ Blockly.Python['land_home'] = function(block) {
 };
 
 Blockly.Python['hover'] = function(block) {
-  var duration = Blockly.JavaScript.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_NONE);
+  var duration = Blockly.Python.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_NONE);
   return 'hover(' + duration + ');\n';
 };
 
 Blockly.Python['yaw_right'] = function(block) {
-  var angle = Blockly.JavaScript.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_NONE);
+  var angle = Blockly.Python.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_NONE);
   return 'yawRight(' + angle + ');\n';
 };
 
 Blockly.Python['yaw_left'] = function(block) {
-  var angle = block.getFieldValue("angle");
+  var angle = Blockly.Python.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_NONE);
   return 'yawLeft(' + angle + ');\n';
 };
 
@@ -46,7 +46,7 @@ Blockly.Python['pitch_gimbal_to'] = function(block) {
 };
 
 Blockly.Python['fly_forward'] = function(block) {
-  var distance = Blockly.JavaScript.valueToCode(block, 'distance', Blockly.JavaScript.ORDER_NONE);
+  var distance = Blockly.Python.valueToCode(block, 'distance', Blockly.JavaScript.ORDER_NONE);
   return 'flyForward(' + distance + ');\n';
 };
 
@@ -56,7 +56,7 @@ Blockly.Python['video'] = function(block) {
 };
 
 Blockly.Python['change_altitude'] = function(block) {
-  var altitude = Blockly.JavaScript.valueToCode(block, 'altitude', Blockly.JavaScript.ORDER_NONE);
+  var altitude = Blockly.Python.valueToCode(block, 'altitude', Blockly.JavaScript.ORDER_NONE);
   return 'change_altitude(' + altitude + ');\n';
 };
 
