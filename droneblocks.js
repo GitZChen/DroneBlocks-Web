@@ -5,6 +5,7 @@ var blocklyDiv = document.getElementById('blocklyDiv');
 var workspace = Blockly.inject(blocklyDiv,
     {media: 'blockly/media/',
      toolbox: document.getElementById('toolbox')});
+
 var onresize = function(e) {
   // Compute the absolute coordinates and dimensions of blocklyArea.
   var element = blocklyArea;
@@ -20,6 +21,7 @@ var onresize = function(e) {
   blocklyDiv.style.top = y + 'px';
   blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
   blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
+  Blockly.svgResize(workspace); // Added to resize when code view is clicked
 };
 window.addEventListener('resize', onresize, false);
 onresize();
@@ -51,17 +53,24 @@ function uploadMission() {
 }
 
 function showCodeView() {
-  
-  isCodeViewOpen = true;
-  
-  document.getElementById("blocklyArea").className = "half";
-  var codeView = document.getElementById("codeView");
-  codeView.className = "block";
-  
-  var code = document.getElementById("code");
-  code.innerHTML = PR.prettyPrintOne(Blockly.Python.workspaceToCode());
-  
-  window.dispatchEvent(new Event('resize'));
+
+  if(!isCodeViewOpen) {
+    isCodeViewOpen = true;
+    $("#blocklyArea").removeClass("full");
+    $("#blocklyArea").addClass("half");
+    $("#codeView").removeClass("hidden");
+    $("#codeView").addClass("block");
+    $("#codeViewButton a").html("X");
+    $("#code").html(PR.prettyPrintOne(Blockly.Python.workspaceToCode()));
+  } else {
+    isCodeViewOpen = false;
+    $("#blocklyArea").removeClass("half");
+    $("#blocklyArea").addClass("full");
+    $("#codeView").addClass("hidden");
+    $("#codeViewButton a").html("{ Code }");
+  }
+    
+  onresize();
   
 }
 
@@ -112,6 +121,6 @@ workspace.addChangeListener(saveBlocks);
 window.setTimeout(BlocklyStorage.restoreBlocks, 1000);
 
 // Initialize some elements
-window.onload = function() {
-  document.getElementById("codeView").className = "hidden";
-}
+$(document).ready(function() {
+  $("#codeView").addClass("hidden");
+});

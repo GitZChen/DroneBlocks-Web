@@ -143,7 +143,7 @@ div#blocklyArea.half {
 }
 
 div#blocklyArea.full {
-  width: 50%;
+  width: 100% !important;
 }
 
 div#codeView {
@@ -156,25 +156,35 @@ div#codeView {
 
 div#buttons {
   clear: both;
-  border: 1px solid #00FF00;
   height: 50px;
 }
 
-div#buttons #codeViewButton {
-  float: left;
+div#codeViewButton {
+  position: absolute;
+  top: 0;
+  right: 0;
   background-color: #E83F6F;
   padding: 10px;
+  text-decoration: none;
+  z-index: 100;
+}
+
+div#codeViewButton a {
+  color: #FFFFFF;
   text-decoration: none;
 }
 
 div#buttons #previewButton {
-  float: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
   background-color: #7FB800;
   padding: 10px;
   text-decoration: none;
+  z-index: 101;
 }
 
-div#buttons #previewButton a, div#buttons #codeViewButton a{
+div#buttons #previewButton a {
   color: #FFFFFF;
   text-decoration: none;
 }
