@@ -52,8 +52,7 @@ function uploadMission() {
   }
 }
 
-function showCodeView() {
-
+function toggleCodeView() {
   if(!isCodeViewOpen) {
     isCodeViewOpen = true;
     $("#blocklyArea").removeClass("full");
@@ -63,15 +62,20 @@ function showCodeView() {
     $("#codeViewButton a").html("X");
     $("#code").html(PR.prettyPrintOne(Blockly.Python.workspaceToCode()));
   } else {
-    isCodeViewOpen = false;
-    $("#blocklyArea").removeClass("half");
-    $("#blocklyArea").addClass("full");
-    $("#codeView").addClass("hidden");
-    $("#codeViewButton a").html("{ Code }");
+    closeCodeView();
   }
-    
+  
+  // Call to redraw the view
   onresize();
   
+}
+
+function closeCodeView() {
+  isCodeViewOpen = false;
+  $("#blocklyArea").removeClass("half");
+  $("#blocklyArea").addClass("full");
+  $("#codeView").addClass("hidden");
+  $("#codeViewButton a").html("{ Code }");
 }
 
 var blockIndex = 0;

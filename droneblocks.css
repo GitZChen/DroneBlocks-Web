@@ -149,7 +149,7 @@ div#blocklyArea.full {
 div#codeView {
   background: #E7E7E8;
   float: left;
-  width: 45%;
+  width: 40%;
   padding: 10px;
   font-family: monospace;
 }
