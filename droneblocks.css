@@ -139,7 +139,7 @@ div#blocklyArea {
 }
 
 div#blocklyArea.half {
-  width: 50% !important;
+  width: 55% !important;
 }
 
 div#blocklyArea.full {
@@ -149,7 +149,7 @@ div#blocklyArea.full {
 div#codeView {
   background: #E7E7E8;
   float: left;
-  width: 48%;
+  width: 45%;
   padding: 10px;
   font-family: monospace;
 }
