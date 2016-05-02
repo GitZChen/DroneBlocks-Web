@@ -5,12 +5,7 @@ Blockly.Python['takeoff'] = function(block) {
 
 Blockly.Python['flight_path'] = function(block) {
   var path = block.getFieldValue("path");
-  //return 'mission+="flight_path,' + path + '|";';
-};
-
-Blockly.Python['heading_mode'] = function(block) {
-  var mode = block.getFieldValue("mode");
-  //return 'mission+="heading_mode,' + mode + '|";';
+  return 'flight_path("' + path + '");\n';
 };
 
 Blockly.Python['land'] = function(block) {
