@@ -3,8 +3,12 @@ index.html
 blockly/blockly_compressed.js
 blockly/blocks_compressed.js
 blockly/javascript_compressed.js
+blockly/python_compressed.js
 blockly/storage.js
+blockly/prettify.css
+blockly/run_prettify.js
 blockly/generators/javascript/droneblocks.js
+blockly/generators/python/droneblocks.js
 blockly/msg/js/en.js
 blockly/blocks/droneblocks/takeoff.js
 blockly/blocks/droneblocks/flight_path.js
@@ -25,6 +29,7 @@ blockly/blocks/droneblocks/loop.js
 blockly/blocks/droneblocks/follow.js
 droneblocks.css
 droneblocks.js
+jquery-2.2.3.min.js
 blockly/media/sprites.png
 blockly/media/click.mp3
 blockly/media/disconnect.wav

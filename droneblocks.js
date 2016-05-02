@@ -1,8 +1,11 @@
+var isCodeViewOpen = false;
+
 var blocklyArea = document.getElementById('blocklyArea');
 var blocklyDiv = document.getElementById('blocklyDiv');
 var workspace = Blockly.inject(blocklyDiv,
     {media: 'blockly/media/',
      toolbox: document.getElementById('toolbox')});
+
 var onresize = function(e) {
   // Compute the absolute coordinates and dimensions of blocklyArea.
   var element = blocklyArea;
@@ -18,6 +21,7 @@ var onresize = function(e) {
   blocklyDiv.style.top = y + 'px';
   blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
   blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
+  Blockly.svgResize(workspace); // Added to resize when code view is clicked
 };
 window.addEventListener('resize', onresize, false);
 onresize();
@@ -46,6 +50,32 @@ function uploadMission() {
   } else if(os == 'Android') {
   	Android.confirmMission(Blockly.JavaScript.workspaceToCode(workspace));
   }
+}
+
+function toggleCodeView() {
+  if(!isCodeViewOpen) {
+    isCodeViewOpen = true;
+    $("#blocklyArea").removeClass("full");
+    $("#blocklyArea").addClass("half");
+    $("#codeView").removeClass("hidden");
+    $("#codeView").addClass("block");
+    $("#codeViewButton a").html("X");
+    $("#code").html(PR.prettyPrintOne(Blockly.Python.workspaceToCode()));
+  } else {
+    closeCodeView();
+  }
+  
+  // Call to redraw the view
+  onresize();
+  
+}
+
+function closeCodeView() {
+  isCodeViewOpen = false;
+  $("#blocklyArea").removeClass("half");
+  $("#blocklyArea").addClass("full");
+  $("#codeView").addClass("hidden");
+  $("#codeViewButton a").html("{ Code }");
 }
 
 var blockIndex = 0;
@@ -82,6 +112,10 @@ function highlightBlockFromAndroid(id) {
 function saveBlocks() {
   BlocklyStorage.backupBlocks_(Blockly.getMainWorkspace());
   
+  if(isCodeViewOpen) {
+    document.getElementById("code").innerHTML = PR.prettyPrintOne(Blockly.Python.workspaceToCode());
+  }
+  
   // Update text field for debugging
   //document.getElementById("textarea").value = Blockly.JavaScript.workspaceToCode(workspace);
 }
@@ -90,13 +124,7 @@ workspace.addChangeListener(saveBlocks);
 // Load last set of blocks
 window.setTimeout(BlocklyStorage.restoreBlocks, 1000);
 
-/*
-var x;
-var y;
-
-
-:::takeoff,25|x = 30;
-y = 5;
-y = y + 10;
-::fly_forward,x|yaw_right,180|::fly_forward,y|land
-*/
+// Initialize some elements
+$(document).ready(function() {
+  $("#codeView").addClass("hidden");
+});

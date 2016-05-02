@@ -4,11 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width; initial-scale=1.25; maximum-scale=1.25; user-scalable=0;" />
   <title>DroneBlocks</title>
+  <script src="./jquery-2.2.3.min.js"></script>
   <script src="./blockly/blockly_compressed.js"></script>
   <script src="./blockly/blocks_compressed.js"></script>
   <script src="./blockly/javascript_compressed.js"></script>
+  <script src="./blockly/python_compressed.js"></script>
   <script src="./blockly/storage.js"></script>
+  <script src="./blockly/run_prettify.js"></script>
   <script src="./blockly/generators/javascript/droneblocks.js"></script>
+  <script src="./blockly/generators/python/droneblocks.js"></script>
   <script src="./blockly/msg/js/en.js"></script>
   <script src="./blockly/blocks/droneblocks/takeoff.js"></script>
   <script src="./blockly/blocks/droneblocks/flight_path.js"></script>
@@ -27,23 +31,26 @@
   <script src="./blockly/blocks/droneblocks/loop.js"></script>
   <script src="./blockly/blocks/droneblocks/follow.js"></script>
   <link rel="stylesheet" type="text/css" href="droneblocks.css">
+  <link rel="stylesheet" type="text/css" href="blockly/prettify.css">
 </head>
 <body>
-  <table>
-    <tr>
-      <td id="blocklyArea">
-      </td>
-    </tr>
-    <!--<tr><td><textarea style="width: 300px; height: 150px;" id="textarea"></textarea></td></tr>-->
-    <tr><td style="text-align:right"><a href="#" id="startButton" onclick="uploadMission();">Preview Mission</a></td></tr>
-  </table>
+  
+  <div id="codeViewButton"><a href="#" onclick="toggleCodeView();">{ Code }</a></div>
+  
+  <div id="blocklyArea"></div>
+  
+  <div id="codeView">
+    <pre id="code" class="prettyprint linenums"></pre>
+  </div>
+  
+  <div id="previewButton"><a href="#" onclick="uploadMission();">Preview Mission</a></div>
 
   <div id="blocklyDiv" style="position: absolute"></div>
 
   <xml id="toolbox" style="display: none">
     <category name="Takeoff">
       <block type="takeoff"></block>
-      <block type="flight_path"></block>
+      <!--<block type="flight_path"></block>-->
       <!--<block type="heading_mode"></block>-->
     </category>
     <category name="Navigation">
