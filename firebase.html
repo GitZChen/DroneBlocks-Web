@@ -1,0 +1,27 @@
+<html>
+<head>
+  <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+</head>
+<body>
+  
+  <script>
+  var ref = new Firebase("https://fiery-inferno-4972.firebaseio.com");
+  
+  // Create a callback which logs the current auth state
+   function authDataCallback(authData) {
+       if (!authData) {
+         ref.authWithOAuthRedirect("google", function (error) {
+             document.write(error);
+         });
+       }
+       else {
+         document.write("Hello " + authData.google.displayName + ", your Google id is " + authData.google.id + " and this is your profile picture: <br /><br /><img src='" + authData.google.profileImageURL + "' />");
+         console.log(authData);
+       }
+   }
+
+   ref.onAuth(authDataCallback);
+  </script>
+  
+</body>
+</html>
