@@ -15,7 +15,6 @@
   <script src="./blockly/generators/python/droneblocks.js"></script>
   <script src="./blockly/msg/js/en.js"></script>
   <script src="./blockly/blocks/droneblocks/takeoff.js"></script>
-  <script src="./blockly/blocks/droneblocks/flight_path.js"></script>
   <script src="./blockly/blocks/droneblocks/land.js"></script>
   <script src="./blockly/blocks/droneblocks/land_home.js"></script>
   <script src="./blockly/blocks/droneblocks/hover.js"></script>
@@ -32,18 +31,32 @@
   <script src="./blockly/blocks/droneblocks/follow.js"></script>
   <link rel="stylesheet" type="text/css" href="droneblocks.css">
   <link rel="stylesheet" type="text/css" href="blockly/prettify.css">
+  
+  <!-- Material -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="./materialize/css/materialize.min.css"  media="screen,projection"/>
 </head>
 <body>
   
-  <div id="codeViewButton"><a href="#" onclick="toggleCodeView();">{ Code }</a></div>
+  <ul id="nav-mobile" class="side-nav">
+    <li><a href="#" id="previewMission">Preview Mission</a></li>
+    <li class="divider"></li>
+    <li><a href="#" id="showCode">Show Mission Code</a></li>
+    <li class="divider"></li>
+    <li><a href="#">Save Mission</a></li>
+    <li class="divider"></li>
+    <li><a href="#">Share Mission</a></li>
+    <li class="divider"></li>
+    <li><a href="#">Mission Dashboard</a></li>
+  </ul>
+  
+  <a href="#" data-activates="nav-mobile" class="right button-collapse show-on-large" id="hamburger"><i class="small material-icons">menu</i></a>
   
   <div id="blocklyArea"></div>
   
   <div id="codeView">
     <pre id="code" class="prettyprint linenums"></pre>
   </div>
-  
-  <div id="previewButton"><a href="#" onclick="uploadMission();">Preview Mission</a></div>
 
   <div id="blocklyDiv" style="position: absolute"></div>
 
@@ -123,7 +136,8 @@
       <block type="land_home"></block>
     </category>
   </xml>
-
-  <script src="./droneblocks.js"></script>
+  
+  <script type="text/javascript" src="./materialize/js/materialize.min.js"></script>
+  <script type="text/javascript" src="./droneblocks.js"></script>
 </body>
 </html>

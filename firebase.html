@@ -6,6 +6,9 @@
   
   <script>
   var ref = new Firebase("https://fiery-inferno-4972.firebaseio.com");
+  var display_name;
+  var google_id;
+  var profile_image
   
   // Create a callback which logs the current auth state
    function authDataCallback(authData) {
@@ -15,13 +18,32 @@
          });
        }
        else {
-         document.write("Hello " + authData.google.displayName + ", your Google id is " + authData.google.id + " and this is your profile picture: <br /><br /><img src='" + authData.google.profileImageURL + "' />");
+         display_name = authData.google.displayName;
+         google_id = authData.google.id;
+         profile_image = authData.google.profileImageURL;
+         
+         document.write("Hello " + display_name + ", your Google id is " + google_id + " and this is your profile picture: <br /><br /><img src='" + profile_image + "' /><br /><br /><a href='#' onclick='saveData();'>Save Mission</a>");
          console.log(authData);
        }
    }
 
    ref.onAuth(authDataCallback);
+   
+   function saveData() {
+     var ref = new Firebase("https://fiery-inferno-4972.firebaseio.com/droneblocks");
+     
+     var usersRef = ref.child("users");
+     usersRef.push({
+       "google_id": google_id,
+       "google_display_name": display_name,
+       "google_profile_image": profile_image
+     });
+   }
   </script>
   
+  
+  <div>
+    
+  </d>
 </body>
 </html>

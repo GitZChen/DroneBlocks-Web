@@ -44,7 +44,7 @@ function getMobileOS() {
   }
 }
 
-function uploadMission() {
+function previewMission() {
   
   var code = Blockly.JavaScript.workspaceToCode(workspace);
   code = eval(code);
@@ -66,7 +66,9 @@ function toggleCodeView() {
     $("#codeView").addClass("block");
     $("#codeViewButton a").html("X");
     $("#code").html(PR.prettyPrintOne(Blockly.Python.workspaceToCode()));
+    $("#showCode").text("Hide Mission Code");
   } else {
+    $("#showCode").text("Show Mission Code");
     closeCodeView();
   }
   
@@ -132,4 +134,18 @@ window.setTimeout(BlocklyStorage.restoreBlocks, 1000);
 // Initialize some elements
 $(document).ready(function() {
   $("#codeView").addClass("hidden");
+  
+  $("#previewMission").click(function() {
+    previewMission();
+  });
+  
+  $("#showCode").click(function() {
+    toggleCodeView();
+  });
+  
+  $('.button-collapse').sideNav({
+    edge: 'right',
+    closeOnClick: true
+  });
+  
 });
