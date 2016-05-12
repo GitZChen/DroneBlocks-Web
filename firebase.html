@@ -10,21 +10,24 @@
   var google_id;
   var profile_image
   
+  var isNewUser = true;
+  
   // Create a callback which logs the current auth state
    function authDataCallback(authData) {
-       if (!authData) {
-         ref.authWithOAuthRedirect("google", function (error) {
-             document.write(error);
-         });
-       }
-       else {
-         display_name = authData.google.displayName;
-         google_id = authData.google.id;
-         profile_image = authData.google.profileImageURL;
-         
-         document.write("Hello " + display_name + ", your Google id is " + google_id + " and this is your profile picture: <br /><br /><img src='" + profile_image + "' /><br /><br /><a href='#' onclick='saveData();'>Save Mission</a>");
-         console.log(authData);
-       }
+     // 
+     if (!authData) {
+       ref.authWithOAuthRedirect("google", function (error) {
+           document.write(error);
+       });
+     }
+     else {
+       display_name = authData.google.displayName;
+       google_id = authData.google.id;
+       profile_image = authData.google.profileImageURL;
+       
+       document.write("Hello " + display_name + ",<br />your Google id is " + google_id + "<br />your Firebase id is " + authData.uid + " and this is your profile picture: <br /><br /><img src='" + profile_image + "' /><br /><br /><a href='#' onclick='saveData();'>Save Mission</a>");
+       console.log(authData);
+     }
    }
 
    ref.onAuth(authDataCallback);

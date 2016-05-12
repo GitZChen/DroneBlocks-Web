@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html manifest="droneblocks.appcache">
+<!--<html manifest="droneblocks.appcache">-->
+<html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width; initial-scale=1.25; maximum-scale=1.25; user-scalable=0;" />
@@ -35,19 +36,26 @@
   <!-- Material -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link type="text/css" rel="stylesheet" href="./materialize/css/materialize.min.css"  media="screen,projection"/>
+  
+  <!-- Firebase -->
+  <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 </head>
 <body>
   
   <ul id="nav-mobile" class="side-nav">
+    <li><a href="#" id="userInfo" class="light-blue lighten-3 white-text"></a></li>
+    <li class="divider"></li>
     <li><a href="#" id="previewMission">Preview Mission</a></li>
     <li class="divider"></li>
     <li><a href="#" id="showCode">Show Mission Code</a></li>
     <li class="divider"></li>
-    <li><a href="#">Save Mission</a></li>
+    <li><a href="#" id="saveMission">Save Mission</a></li>
     <li class="divider"></li>
-    <li><a href="#">Share Mission</a></li>
+    <li><a href="#" id="shareMission">Share Mission</a></li>
     <li class="divider"></li>
     <li><a href="#">Mission Dashboard</a></li>
+    <li class="divider"></li>
+    <li class="center-align"><span class="waves-effect waves-light btn z-depth-0 light-blue">Logout</span></li>
   </ul>
   
   <a href="#" data-activates="nav-mobile" class="right button-collapse show-on-large" id="hamburger"><i class="small material-icons">menu</i></a>
@@ -138,6 +146,7 @@
   </xml>
   
   <script type="text/javascript" src="./materialize/js/materialize.min.js"></script>
-  <script type="text/javascript" src="./droneblocks.js"></script>
+  <script type="text/javascript" src="./js/droneblocks.js"></script>
+  <script type="text/javascript" src="./js/firebase.js"></script>
 </body>
 </html>

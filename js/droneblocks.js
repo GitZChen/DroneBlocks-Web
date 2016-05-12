@@ -143,6 +143,10 @@ $(document).ready(function() {
     toggleCodeView();
   });
   
+  $("#saveMission").click(function() {
+    saveMission();
+  });
+  
   $('.button-collapse').sideNav({
     edge: 'right',
     closeOnClick: true
