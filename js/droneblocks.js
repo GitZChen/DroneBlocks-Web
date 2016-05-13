@@ -133,23 +133,33 @@ window.setTimeout(BlocklyStorage.restoreBlocks, 1000);
 
 // Initialize some elements
 $(document).ready(function() {
-  $("#codeView").addClass("hidden");
+  setTimeout(function() {
   
-  $("#previewMission").click(function() {
-    previewMission();
-  });
+    $("#codeView").addClass("hidden");
   
-  $("#showCode").click(function() {
-    toggleCodeView();
-  });
+    $("#previewMission").click(function() {
+      previewMission();
+    });
   
-  $("#saveMission").click(function() {
-    saveMission();
-  });
+    $("#showCode").click(function() {
+      toggleCodeView();
+    });
   
-  $('.button-collapse').sideNav({
-    edge: 'right',
-    closeOnClick: true
-  });
+    $("#saveMission").click(function() {
+      saveMission();
+    });
+  
+    $('.button-collapse').sideNav({
+      edge: 'right',
+      closeOnClick: true
+    });
+  
+    $("#logout").click(function() {
+      logout();
+    });
+  
+    initAuth();
+  
+  }, 3000);
   
 });
