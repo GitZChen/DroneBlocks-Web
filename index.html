@@ -42,26 +42,46 @@
 </head>
 <body>
   
+  <!-- Side nav -->
   <ul id="nav-mobile" class="side-nav">
-    <li><a href="#" id="userInfo" class="light-blue lighten-3 white-text"></a></li>
+    <li class="center-align" id="login"><span class="waves-effect waves-light btn z-depth-0 light-blue">Login</span></li>
     <li class="divider"></li>
     <li><a href="#" id="previewMission">Preview Mission</a></li>
     <li class="divider"></li>
     <li><a href="#" id="showCode">Show Mission Code</a></li>
     <li class="divider"></li>
     <li><a href="#" id="saveMission">Save Mission</a></li>
-    <li class="divider"></li>
+    <li class="divider" id="d1"></li>
     <li><a href="#" id="shareMission">Share Mission</a></li>
-    <li class="divider"></li>
-    <li><a href="dashboard.html">Mission Dashboard</a></li>
-    <li class="divider"></li>
+    <li class="divider" id="d2"></li>
+    <li><a href="missions.html" id="myMissions">My Missions</a></li>
+    <li class="divider" id="d3"></li>
     <li class="center-align" id="logout"><span class="waves-effect waves-light btn z-depth-0 light-blue">Logout</span></li>
   </ul>
   
+  <!-- Hamburger icon -->
   <a href="#" data-activates="nav-mobile" class="right button-collapse show-on-large" id="hamburger"><i class="small material-icons">menu</i></a>
+  
+  <!-- Save modal -->
+  <div id="modal1" class="modal">
+    
+    <div class="modal-content">
+      <h6>Please enter a mission title below and click SAVE</h6>
+      <div class="input-field">
+        <input placeholder="Mission Title" id="title" type="text" />
+      </div>
+    </div>
+    
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-light btn-flat">Cancel</a>
+      <a href="#!" class=" modal-action modal-close waves-effect waves-light btn z-depth-0" id="saveModal">Save</a>
+    </div>
+    
+  </div>
   
   <div id="blocklyArea"></div>
   
+  <!-- Code preview -->
   <div id="codeView">
     <pre id="code" class="prettyprint linenums"></pre>
   </div>

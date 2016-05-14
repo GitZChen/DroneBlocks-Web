@@ -146,6 +146,10 @@ $(document).ready(function() {
     });
   
     $("#saveMission").click(function() {
+      $('#modal1').openModal();
+    });
+    
+    $("#saveModal").click(function() {
       saveMission();
     });
   
@@ -156,6 +160,10 @@ $(document).ready(function() {
   
     $("#logout").click(function() {
       logout();
+    });
+    
+    $("#login").click(function() {
+      login();
     });
   
     initAuth();
