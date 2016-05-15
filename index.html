@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width; initial-scale=1.25; maximum-scale=1.25; user-scalable=0;" />
   <title>DroneBlocks</title>
-  <script src="./jquery-2.2.3.min.js"></script>
+  <script src="./js/jquery-2.2.3.min.js"></script>
   <script src="./blockly/blockly_compressed.js"></script>
   <script src="./blockly/blocks_compressed.js"></script>
   <script src="./blockly/javascript_compressed.js"></script>
@@ -46,6 +46,8 @@
   <ul id="nav-mobile" class="side-nav">
     <li class="center-align" id="login"><span class="waves-effect waves-light btn z-depth-0 light-blue">Login</span></li>
     <li class="divider"></li>
+    <li><a href="#" id="newMission">New Mission</a></li>
+    <li class="divider"></li>
     <li><a href="#" id="previewMission">Preview Mission</a></li>
     <li class="divider"></li>
     <li><a href="#" id="showCode">Show Mission Code</a></li>
@@ -62,8 +64,10 @@
   <!-- Hamburger icon -->
   <a href="#" data-activates="nav-mobile" class="right button-collapse show-on-large" id="hamburger"><i class="small material-icons">menu</i></a>
   
+  <div id="missionTitle">Untitled Mission</div>
+  
   <!-- Save modal -->
-  <div id="modal1" class="modal">
+  <div id="saveMissionModal" class="modal">
     
     <div class="modal-content">
       <h6>Please enter a mission title below and click SAVE</h6>

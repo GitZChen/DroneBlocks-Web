@@ -160,9 +160,30 @@ div#codeView.visible {
   display: block;
 }
 
+/* Material CSS stuff */
 a#hamburger {
   position: absolute;
   top: 0px;
   right: 0px;
   z-index: 1;
+}
+
+div#missionTitle {
+  position: absolute;
+  top: 5px;
+  right: 35px;
+  z-index: 2;
+}
+/* end material css */
+
+/* This is to prevent the material css conflict with blockly's input fields */
+.blocklyHtmlInput {
+  border: none !important;
+  border-radius: 4px !important;
+  font-family: sans-serif !important;
+  height: 100% !important;
+  margin: 0 !important;
+  outline: none !important;
+  padding: 0 1px !important;
+  width: 100% !important;
 }

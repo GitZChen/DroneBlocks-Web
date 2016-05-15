@@ -1,5 +1,6 @@
 var isUserLoggedIn = false;
 var userId;
+var missionId;
 
 var ref = new Firebase("https://fiery-inferno-4972.firebaseio.com");
 
@@ -18,26 +19,52 @@ function saveMission() {
     
     if (isUserLoggedIn) {
       
-      var missionsRef = ref.child("droneblocks/missions");
       var missionXML = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace));
       
-      missionsRef.push({
-        title: $("#title").val(),
-        mission: missionXML,
-        userId: userId,
-        createdAt: Firebase.ServerValue.TIMESTAMP
-      });
+      // The missionId is null so let's save it for the first time
+      if(missionId == null) {
+        
+        var missionsRef = ref.child("droneblocks/missions");
+        var missionCreated = Firebase.ServerValue.TIMESTAMP;
+        var missionsRefPush = missionsRef.push({
+          title: $("#title").val(),
+          missionXML: missionXML,
+          userId: userId,
+          createdAt: missionCreated
+        });
       
-      var usersRef = ref.child("droneblocks/users/" + userId + "/missions");
-      usersRef.push({
-        title: $("#title").val()
-      });
+        // Set the mission id before we save and so we can update this mission later
+        missionId = missionsRefPush.key();
+      
+        var usersRef = ref.child("droneblocks/users/" + userId + "/missions");
+        usersRef.push({
+          missionId: missionId,
+          title: $("#title").val(),
+          createdAt: missionCreated
+        });
+        
+        // Set the mission title
+        $("#missionTitle").text($("#title").val());
+        
+        Materialize.toast("You mission has been created and saved", 3000);
+      
+      // The missionId exists so let's just update it
+      } else {
+        
+        var missionsRef = ref.child("droneblocks/missions/" + missionId);
+        missionsRef.update({
+          missionXML: missionXML
+        });
+        
+        Materialize.toast("You mission has been updated and saved", 3000);
+        
+      }
       
     // This will prompt the user to login
     } else if (!authData) {
       
       // Let's replace this with a toast
-      alert("please login");
+      alert("Please login");
     }
   });
 }
@@ -69,7 +96,8 @@ function initAuth() {
           name: authData.google.displayName,
           profileImage: authData.google.profileImageURL,
           email: authData.google.email || "",
-          createdAt: Firebase.ServerValue.TIMESTAMP
+          createdAt: Firebase.ServerValue.TIMESTAMP,
+          loginAt: Firebase.ServerValue.TIMESTAMP
         });
         
       }
@@ -107,11 +135,9 @@ function logout() {
   ref.unauth();
 }
 
-/*
-function getMissionsForUser() {
-  var missionsRef = ref.child("droneblocks/missions");
-  missionsRef.orderByChild() {
-    
-  });
+function newMission() {
+  missionId = null;
+  $("#missionTitle").text("Untitled Mission");
+  Blockly.getMainWorkspace().clear();
+  // TODO: Add confirmation that the user wants to create a new mission
 }
-*/

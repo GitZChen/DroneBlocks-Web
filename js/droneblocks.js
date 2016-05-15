@@ -126,16 +126,19 @@ function saveBlocks() {
   // Update text field for debugging
   //document.getElementById("textarea").value = Blockly.JavaScript.workspaceToCode(workspace);
 }
-workspace.addChangeListener(saveBlocks);
 
-// Load last set of blocks
-window.setTimeout(BlocklyStorage.restoreBlocks, 1000);
+// Save the blocks in local storage when dragged onto the canvas
+workspace.addChangeListener(saveBlocks);
 
 // Initialize some elements
 $(document).ready(function() {
   setTimeout(function() {
   
     $("#codeView").addClass("hidden");
+    
+    $("#newMission").click(function() {
+      newMission();
+    });
   
     $("#previewMission").click(function() {
       previewMission();
@@ -146,7 +149,14 @@ $(document).ready(function() {
     });
   
     $("#saveMission").click(function() {
-      $('#modal1').openModal();
+      
+      // We only prompt on the first save of the mission
+      if(missionId == null) {
+        $('#saveMissionModal').openModal();
+      } else {
+        saveMission();
+      }
+      
     });
     
     $("#saveModal").click(function() {
@@ -166,8 +176,49 @@ $(document).ready(function() {
       login();
     });
   
+    // Log the user in if necessary
     initAuth();
+    
+    // Let's setup the block canvas
+    // If a mission id is passed then let's load that mission, otherwise we'll display the last set of blocks
+    if(getUrlParam("missionId") != null) {
   
-  }, 3000);
+      // TODO: refactor this. We are setting a global here. Now when a users saves it will just update this loaded mission
+      missionId = getUrlParam("missionId");
+      var missionsRef = ref.child("droneblocks/missions/" + missionId);
+      
+      missionsRef.once("value", function(snapshot) {
+        
+        var xml = Blockly.Xml.textToDom(snapshot.val().missionXML);
+        Blockly.Xml.domToWorkspace(workspace, xml);
+        
+        $("#missionTitle").text(snapshot.val().title);
+
+      });
+      
+    // Load last set of blocks from local storage
+    } else {
+      
+      window.setTimeout(BlocklyStorage.restoreBlocks, 1000);
+  
+    }
+  
+  }, 1000); // Let's remove this delay later
   
 });
+
+// Utility function to get url param
+function getUrlParam(param) {
+  var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+    sURLVariables = sPageURL.split('&'),
+    sParameterName,
+    i;
+
+  for (i = 0; i < sURLVariables.length; i++) {
+    sParameterName = sURLVariables[i].split('=');
+
+    if (sParameterName[0] === param) {
+      return sParameterName[1] === undefined ? true : sParameterName[1];
+    }
+  }
+};
