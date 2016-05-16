@@ -180,11 +180,11 @@ $(document).ready(function() {
     initAuth();
     
     // Let's setup the block canvas
-    // If a mission id is passed then let's load that mission, otherwise we'll display the last set of blocks
-    if(getUrlParam("missionId") != null) {
+    // See if this is a shared mission
+    if(getUrlParam("share") != null) {
   
-      // TODO: refactor this. We are setting a global here. Now when a users saves it will just update this loaded mission
-      missionId = getUrlParam("missionId");
+      // This is local and not a global
+      var missionId = getUrlParam("missionId");
       var missionsRef = ref.child("droneblocks/missions/" + missionId);
       
       missionsRef.once("value", function(snapshot) {

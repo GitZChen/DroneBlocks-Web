@@ -46,7 +46,7 @@ function saveMission() {
         // Set the mission title
         $("#missionTitle").text($("#title").val());
         
-        Materialize.toast("You mission has been created and saved", 3000);
+        Materialize.toast("Your mission has been created and saved", 3000);
       
       // The missionId exists so let's just update it
       } else {
@@ -56,7 +56,7 @@ function saveMission() {
           missionXML: missionXML
         });
         
-        Materialize.toast("You mission has been updated and saved", 3000);
+        Materialize.toast("Your mission has been updated and saved", 3000);
         
       }
       

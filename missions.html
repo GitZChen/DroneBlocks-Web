@@ -21,17 +21,31 @@
 </head>
 <body>
   <h5 class="card-panel light-blue darken-1 white-text z-depth-0">My Missions</h5>
+  
   <table id="missionsTable">
     <thead>
       <tr>
         <th style="padding-left: 25px">Title</th>
         <th>Created</th>
-        <th>Share</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody id="tbody">
     </tbody>
   </table>
+  
+  <div id="deleteMissionModal" class="modal">
+    
+    <div class="modal-content">
+      <h6>Are you sure want to delete this DroneBlocks mission?</h6>
+    </div>
+    
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-light btn-flat">Cancel</a>
+      <a href="#!" class=" modal-action modal-close waves-effect waves-light btn z-depth-0" id="deleteMissionButton">Delete</a>
+    </div>
+    
+  </div>
   
   <script type="text/javascript" src="./materialize/js/materialize.min.js"></script>
   <script type="text/javascript" src="./js/missions.js"></script>
