@@ -14,7 +14,13 @@ $(document).ready(function(){
     var usersRef = ref.child("droneblocks/users/" + userId + "/missions");
     
     usersRef.orderByChild("createdAt").on("child_added", function(snapshot) {
-      $("#missionList").append('<a href="index.html?missionId=' + snapshot.val().missionId + '" class="collection-item">' + snapshot.val().title + '</a>');
+      
+      $("#tbody").append('<tr>');
+      $("#tbody").append('<td style="padding-left: 25px"><a href="index.html?missionId=' + snapshot.val().missionId + '">' + snapshot.val().title + '</a></td>');
+      $("#tbody").append('<td>' + new Date(snapshot.val().createdAt) + '</td>');
+      $("#tbody").append('<td><i class="material-icons">share</i></td>');
+      $("#tbody").append('</tr>');
+      
     });
     
     

@@ -139,5 +139,6 @@ function newMission() {
   missionId = null;
   $("#missionTitle").text("Untitled Mission");
   Blockly.getMainWorkspace().clear();
+  
   // TODO: Add confirmation that the user wants to create a new mission
 }

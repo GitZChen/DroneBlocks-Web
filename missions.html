@@ -6,6 +6,12 @@
   <meta name="viewport" content="width=device-width; initial-scale=1.25; maximum-scale=1.25; user-scalable=0;" />
   <title>DroneBlocks</title>
   <script src="./js/jquery-2.2.3.min.js"></script>
+  <style>
+  /* Override materialize h5 margin at top */
+  h5 {
+    margin: 0 !important;
+  }
+  </style>
   <!-- Material -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link type="text/css" rel="stylesheet" href="./materialize/css/materialize.min.css"  media="screen,projection"/>
@@ -14,10 +20,18 @@
   <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 </head>
 <body>
-  
-  <div class="collection with-header" id="missionList">
-    <div class="collection-header"><h5>My Missions</h5></div>
-  </div>
+  <h5 class="card-panel light-blue darken-1 white-text z-depth-0">My Missions</h5>
+  <table id="missionsTable">
+    <thead>
+      <tr>
+        <th style="padding-left: 25px">Title</th>
+        <th>Created</th>
+        <th>Share</th>
+      </tr>
+    </thead>
+    <tbody id="tbody">
+    </tbody>
+  </table>
   
   <script type="text/javascript" src="./materialize/js/materialize.min.js"></script>
   <script type="text/javascript" src="./js/missions.js"></script>
