@@ -149,7 +149,6 @@ $(document).ready(function() {
     });
   
     $("#saveMission").click(function() {
-      
       // We only prompt on the first save of the mission
       if(missionId == null) {
         $('#saveMissionModal').openModal();
@@ -184,8 +183,8 @@ $(document).ready(function() {
     if(getUrlParam("share") != null) {
   
       // This is local and not a global
-      var missionId = getUrlParam("missionId");
-      var missionsRef = ref.child("droneblocks/missions/" + missionId);
+      var id = getUrlParam("missionId");
+      var missionsRef = ref.child("droneblocks/missions/" + id);
       
       missionsRef.once("value", function(snapshot) {
         
