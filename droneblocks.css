@@ -177,6 +177,7 @@ div#missionTitle {
 /* end material css */
 
 /* This is to prevent the material css conflict with blockly's input fields */
+/*
 .blocklyHtmlInput {
   border: none !important;
   border-radius: 4px !important;
@@ -187,3 +188,4 @@ div#missionTitle {
   padding: 0 1px !important;
   width: 100% !important;
 }
+*/

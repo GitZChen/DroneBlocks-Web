@@ -17,12 +17,12 @@ $(document).ready(function(){
     usersRef.orderByChild("createdAt").on("child_added", function(snapshot) {
       
       var row = '<tr>';
-      row += '<td style="padding-left: 25px"><a href="index.html?share=1&missionId=' + snapshot.val().missionId + '">' + snapshot.val().title + '</a></td>';
+      row += '<td style="padding-left: 25px"><a href="index.html?share=1&missionId=' + snapshot.key() + '">' + snapshot.val().title + '</a></td>';
       row += '<td>' + new Date(snapshot.val().createdAt) + '</td>';
       row += '<td>';
       row += '<a href="#"><i class="material-icons">share</i></a>';
       row += '&nbsp;&nbsp;&nbsp;&nbsp;';
-      row += '<a href="#!" onClick="deleteMissionConfirm(\'' + snapshot.val().missionId +'\');"><i class="material-icons">delete</i></a>';
+      row += '<a href="#!" onClick="deleteMissionConfirm(\'' + snapshot.key() +'\');"><i class="material-icons">delete</i></a>';
       row += '</td></tr>'
       
       $("#tbody").append(row);
@@ -59,19 +59,19 @@ function deleteMissionConfirm(missionId) {
 // Delete the mission
 function deleteMission() {
   
-  // TODO Figure out how to remove the mission from the user's mission list
+  // Remove the mission from the user's mission list
+  var usersRef = ref.child("droneblocks/users/" + userId + "/missions/" + missionToBeDeleted);
+  usersRef.remove();
   
-  /*var usersRef = ref.child("droneblocks/users/" + userId + "/missions");
-  usersRef.child(missionToBeDeleed)*/
-  
-  // Delete the mission 
-  /*var missionsRef = ref.child("droneblocks/missions/" + missionToBeDeleted);
+  // Remove the mission 
+  var missionsRef = ref.child("droneblocks/missions/" + missionToBeDeleted);
   missionsRef.remove(function(error) {
     if(!error) {
       Materialize.toast("Mission deleted successfully", 3000);
     }
-  });*/
+  });
   
-  
+  // For now let's just reload the page
+  document.location.href = "missions.html";
   
 }

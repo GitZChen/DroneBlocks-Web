@@ -36,11 +36,10 @@ function saveMission() {
         // Set the mission id before we save and so we can update this mission later
         missionId = missionsRefPush.key();
       
-        var usersRef = ref.child("droneblocks/users/" + userId + "/missions");
-        usersRef.push({
-          missionId: missionId,
-          title: $("#title").val(),
-          createdAt: missionCreated
+        var usersRef = ref.child("droneblocks/users/" + userId + "/missions/" + missionId);
+        usersRef.set({
+            title: $("#title").val(),
+            createdAt: missionCreated
         });
         
         // Set the mission title
