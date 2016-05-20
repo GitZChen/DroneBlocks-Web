@@ -9,6 +9,8 @@ $(document).ready(function() {
     deleteMission();
   });
   
+  
+  
   firebase.auth().onAuthStateChanged(function(user) {
   
     if (user) {
@@ -23,7 +25,7 @@ $(document).ready(function() {
         row += '<td style="padding-left: 25px"><a href="index.html?share=1&missionId=' + snapshot.key + '">' + snapshot.val().title + '</a></td>';
         row += '<td>' + new Date(snapshot.val().createdAt) + '</td>';
         row += '<td>';
-        row += '<a href="#"><i class="material-icons">share</i></a>';
+        row += '<a href="#!" onClick="shareMission(\'' + snapshot.key +'\');"><i class="material-icons">share</i></a>';
         row += '&nbsp;&nbsp;&nbsp;&nbsp;';
         row += '<a href="#!" onClick="deleteMissionConfirm(\'' + snapshot.key +'\');"><i class="material-icons">delete</i></a>';
         row += '</td></tr>'
@@ -65,4 +67,12 @@ function deleteMission() {
   // For now let's just reload the page
   document.location.href = "missions.html";
   
+}
+
+function shareMission(missionId) {
+  $("#shareModal").openModal();
+  
+  $("#iPadShareLink").val("droneblocks://?missionId=" + missionId);
+  
+  $("#desktopShareLink").val("https://fiery-inferno-4972.firebaseapp.com?share=1&missionId=" + missionId);
 }
