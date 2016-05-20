@@ -1,55 +1,46 @@
-var ref = new Firebase("https://fiery-inferno-4972.firebaseio.com");
+var ref = firebase.database().ref();
 var userId;
 var missionToBeDeleted;
 
-// This should be refactored at some point since it's redundant with the auth in firebase.js
-$(document).ready(function(){
+
+$(document).ready(function() {
   
-  var authData = ref.getAuth();
+  $("#deleteMissionButton").click(function() {
+    deleteMission();
+  });
   
-  // User is logged in
-  if(authData) {
+  firebase.auth().onAuthStateChanged(function(user) {
+  
+    if (user) {
     
-    userId = authData.uid;
+      userId = user.uid;
     
-    var usersRef = ref.child("droneblocks/users/" + userId + "/missions");
+      var usersRef = ref.child("droneblocks/users/" + userId + "/missions");
     
-    usersRef.orderByChild("createdAt").on("child_added", function(snapshot) {
+      usersRef.orderByChild("createdAt").on("child_added", function(snapshot) {
       
-      var row = '<tr>';
-      row += '<td style="padding-left: 25px"><a href="index.html?share=1&missionId=' + snapshot.key() + '">' + snapshot.val().title + '</a></td>';
-      row += '<td>' + new Date(snapshot.val().createdAt) + '</td>';
-      row += '<td>';
-      row += '<a href="#"><i class="material-icons">share</i></a>';
-      row += '&nbsp;&nbsp;&nbsp;&nbsp;';
-      row += '<a href="#!" onClick="deleteMissionConfirm(\'' + snapshot.key() +'\');"><i class="material-icons">delete</i></a>';
-      row += '</td></tr>'
-      
-      $("#tbody").append(row);
-      
-    });
+        var row = '<tr>';
+        row += '<td style="padding-left: 25px"><a href="index.html?share=1&missionId=' + snapshot.key + '">' + snapshot.val().title + '</a></td>';
+        row += '<td>' + new Date(snapshot.val().createdAt) + '</td>';
+        row += '<td>';
+        row += '<a href="#"><i class="material-icons">share</i></a>';
+        row += '&nbsp;&nbsp;&nbsp;&nbsp;';
+        row += '<a href="#!" onClick="deleteMissionConfirm(\'' + snapshot.key +'\');"><i class="material-icons">delete</i></a>';
+        row += '</td></tr>'
     
+        $("#tbody").append(row);
     
-    $("#deleteMissionButton").click(function() {
-      deleteMission();
-    });
+      });
     
+    } else {
     
-  // User not logged in take them to the block page
-  } else {
+      console.log("user is logged out");
     
-    document.location.href = "index.html";
-    
-  }
+    }
+  
+  });
   
 });
-
-function getMissionsForUser() {
-  var missionsRef = ref.child("droneblocks/missions");
-  missionsRef.orderByChild({
-    
-  });
-}
 
 function deleteMissionConfirm(missionId) {
   missionToBeDeleted = missionId;

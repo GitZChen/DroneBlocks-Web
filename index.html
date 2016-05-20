@@ -38,7 +38,17 @@
   <link type="text/css" rel="stylesheet" href="./materialize/css/materialize.min.css"  media="screen,projection"/>
   
   <!-- Firebase -->
-  <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBcbAt69BGUjPiOucQbkcNNbcdaSmE-G0o",
+      authDomain: "fiery-inferno-4972.firebaseapp.com",
+      databaseURL: "https://fiery-inferno-4972.firebaseio.com",
+      storageBucket: "",
+    };
+    firebase.initializeApp(config);
+  </script>
 </head>
 <body>
   
@@ -77,8 +87,8 @@
     </div>
     
     <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-light btn-flat">Cancel</a>
       <a href="#!" class=" modal-action modal-close waves-effect waves-light btn z-depth-0" id="saveModal">Save</a>
+      <a href="#!" class=" modal-action modal-close waves-effect waves-light btn-flat">Cancel</a>
     </div>
     
   </div>
