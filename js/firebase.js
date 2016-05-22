@@ -17,7 +17,6 @@ function initAuth() {
     
     // User is signed in
     if (user) {
-      
       userId = user.uid;
       
       var usersRef = ref.child("droneblocks/users");
@@ -56,11 +55,6 @@ function initAuth() {
     
       isUserLoggedIn = true;
       $("#logout").show();
-      
-    // User is not signed in
-    } else {
-      
-      logout();
       
     }
   });
