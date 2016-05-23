@@ -5,15 +5,17 @@ var missionToBeDeleted;
 
 $(document).ready(function() {
   
+  console.log("document ready");
+  
   $("#deleteMissionButton").click(function() {
     deleteMission();
   });
   
-  
-  
   firebase.auth().onAuthStateChanged(function(user) {
   
-    if (user) {
+    console.log("auth state changed: " + new Date());
+    
+    if (user && !userId) {
     
       userId = user.uid;
     
@@ -34,9 +36,12 @@ $(document).ready(function() {
     
       });
     
+    // User is logged out
     } else {
     
-      console.log("user is logged out");
+      // TODO perhaps let them know they're logged out in the future instead of just redirecting
+      
+      document.location.href = "./index.html";
     
     }
   
