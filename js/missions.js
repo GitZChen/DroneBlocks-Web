@@ -5,16 +5,12 @@ var missionToBeDeleted;
 
 $(document).ready(function() {
   
-  console.log("document ready");
-  
   $("#deleteMissionButton").click(function() {
     deleteMission();
   });
   
   firebase.auth().onAuthStateChanged(function(user) {
   
-    console.log("auth state changed: " + new Date());
-    
     if (user && !userId) {
     
       userId = user.uid;
