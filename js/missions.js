@@ -79,5 +79,5 @@ function shareMission(missionId) {
   
   $("#iPadShareLink").val("droneblocks://?missionId=" + missionId);
   
-  $("#desktopShareLink").val("https://fiery-inferno-4972.firebaseapp.com?share=1&missionId=" + missionId);
+  $("#desktopShareLink").val("https://dev.droneblocks.io?share=1&missionId=" + missionId);
 }
