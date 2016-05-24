@@ -230,7 +230,7 @@ function logout() {
   $("#d2").hide();
   $("#d3").hide();
   $("#saveMission").hide();
-  $("#shareMission").hide();
+  //$("#shareMission").hide();
   $("#myMissions").hide();
   
   firebase.auth().signOut();
