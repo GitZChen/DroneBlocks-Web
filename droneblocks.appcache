@@ -28,7 +28,14 @@ blockly/blocks/droneblocks/follow.js
 droneblocks.css
 js/droneblocks.js
 js/jquery-2.2.3.min.js
+js/firebase.js
 blockly/media/sprites.png
 blockly/media/click.mp3
 blockly/media/disconnect.wav
 blockly/media/delete.mp3
+materialize/css/materialize.min.css
+materialize/js/materialize.min.js
+
+# Use from network if available
+NETWORK:
+*
