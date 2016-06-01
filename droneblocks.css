@@ -170,9 +170,14 @@ a#hamburger {
 
 div#missionTitle {
   position: absolute;
-  top: 5px;
-  right: 35px;
+  top: 12px;
+  right: 45px;
   z-index: 2;
+}
+
+/* override medium size for hamburger icon */
+i.medium {
+  font-size: 3rem !important;
 }
 /* end material css */
 
