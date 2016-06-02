@@ -30,13 +30,14 @@
   <script src="./blockly/blocks/droneblocks/orbit.js"></script>
   <script src="./blockly/blocks/droneblocks/loop.js"></script>
   <script src="./blockly/blocks/droneblocks/follow.js"></script>
+  <script src="./js/js2objc.js"></script>
   <link rel="stylesheet" type="text/css" href="./droneblocks.css">
   <link rel="stylesheet" type="text/css" href="./blockly/prettify.css">
-  
+
   <!-- Material -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link type="text/css" rel="stylesheet" href="./materialize/css/materialize.min.css"  media="screen,projection"/>
-  
+
   <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
   <script>
@@ -51,7 +52,7 @@
   </script>
 </head>
 <body>
-  
+
   <!-- Side nav -->
   <ul id="nav-mobile" class="side-nav">
     <li class="center-align" id="login"><span class="waves-effect waves-light btn z-depth-0 light-blue">Login</span></li>
@@ -70,31 +71,31 @@
     <li class="divider" id="d3"></li>
     <li class="center-align" id="logout"><span class="waves-effect waves-light btn z-depth-0 light-blue">Logout</span></li>
   </ul>
-  
+
   <!-- Hamburger icon -->
   <a href="#" data-activates="nav-mobile" class="right button-collapse show-on-large" id="hamburger"><i class="medium material-icons">menu</i></a>
-  
+
   <div id="missionTitle">Untitled Mission</div>
-  
+
   <!-- Save modal -->
   <div id="saveMissionModal" class="modal">
-    
+
     <div class="modal-content">
       <h6>Please enter a mission title below and click SAVE</h6>
       <div class="input-field">
         <input placeholder="Mission Title" id="title" type="text" />
       </div>
     </div>
-    
+
     <div class="modal-footer">
       <a href="#!" class=" modal-action modal-close waves-effect waves-light btn z-depth-0" id="saveModal">Save</a>
       <a href="#!" class=" modal-action modal-close waves-effect waves-light btn-flat">Cancel</a>
     </div>
-    
+
   </div>
-  
+
   <div id="blocklyArea"></div>
-  
+
   <!-- Code preview -->
   <div id="codeView">
     <pre id="code" class="prettyprint linenums"></pre>
@@ -172,13 +173,13 @@
     </category>
     <category name="Variables" custom="VARIABLE">
     </category>
-    
+
     <category name="Land">
       <block type="land"></block>
       <block type="land_home"></block>
     </category>
   </xml>
-  
+
   <script type="text/javascript" src="./materialize/js/materialize.min.js"></script>
   <script type="text/javascript" src="./js/droneblocks.js"></script>
   <script type="text/javascript" src="./js/firebase.js"></script>
