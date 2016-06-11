@@ -52,8 +52,12 @@ function initAuth() {
         
       });
       
-      // Change the login button with the user's name
-      $("#login").html('<a href="#" id="userInfo" class="light-blue lighten-3 white-text">Hi ' + user.providerData[0].displayName.split(" ")[0] + '!</a>');
+      // Change the login button with the user's name if it exists
+      if (!user.providerData[0].displayName)
+        $("#login").html('<a href="#" id="userInfo" class="light-blue lighten-3 white-text">Hi!</a>');
+      else
+        $("#login").html('<a href="#" id="userInfo" class="light-blue lighten-3 white-text">Hi ' + user.providerData[0].displayName.split(" ")[0] + '!</a>');
+      
       $("#login").removeClass("center-align");
     
       isUserLoggedIn = true;
