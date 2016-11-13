@@ -26,6 +26,9 @@ table {
 /* End general styling */
 
 /* Begin block category styling */
+.blocklyTreeRoot {
+  padding: 0px !important;
+}
 .blocklyTreeRow {
   height: 30px !important;
   line-height: 30px !important;

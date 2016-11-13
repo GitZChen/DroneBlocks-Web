@@ -133,6 +133,21 @@ workspace.addChangeListener(saveBlocks);
 // Initialize some elements
 $(document).ready(function() {
   setTimeout(function() {
+    
+    // Let's detect iphone and make the category blocks shorter
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    
+    // Let's reduce the padding to 5px for the category blocks
+    // Not the prettiest way but we'll go with it for now
+    if(userAgent.match( /iPhone/i )) {
+      $("div#\\:1").css("cssText", "padding: 3px !important");
+      $("div#\\:2").css("cssText", "padding: 3px !important");
+      $("div#\\:3").css("cssText", "padding: 3px !important");
+      $("div#\\:4").css("cssText", "padding: 3px !important");
+      $("div#\\:5").css("cssText", "padding: 3px !important");
+      $("div#\\:6").css("cssText", "padding: 3px !important");
+      $("div#\\:7").css("cssText", "padding: 3px !important");
+    }
   
     $("#codeView").addClass("hidden");
     
