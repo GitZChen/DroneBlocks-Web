@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "fiery-inferno-4972",
+    "staging": "droneblocks-staging"
+  }
+}
