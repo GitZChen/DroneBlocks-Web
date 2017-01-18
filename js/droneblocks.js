@@ -54,6 +54,8 @@ function previewMission() {
     window.webkit.messageHandlers.observe.postMessage(code);
   } else if(os == 'Android') {
   	Android.confirmMission(Blockly.JavaScript.workspaceToCode(workspace));
+  } else {
+    alert("Preview Mission is only supported on iOS at the moment. We are working on adding desktop support. Stay tuned!");
   }
 }
 
