@@ -55,7 +55,7 @@ Blockly.JavaScript['photo'] = function(block) {
   return 'mission+="photo|";';
 };
 
-Blockly.JavaScript['pitch_gimbal_to'] = function(block) {
+Blockly.JavaScript['pitch_gimbal'] = function(block) {
   var angle = block.getFieldValue("angle");
   return 'mission+="pitch_gimbal,' + angle + '|";';
 };
