@@ -1,4 +1,4 @@
-Blockly.Blocks['pitch_gimbal'] = {
+Blockly.Blocks['pitch_gimbal_to'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("pitch gimbal to")
