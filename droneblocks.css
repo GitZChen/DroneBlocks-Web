@@ -167,14 +167,14 @@ div#codeView.visible {
 a#hamburger {
   position: absolute;
   top: 0px;
-  right: 0px;
+  right: 20px;
   z-index: 1;
 }
 
 div#missionTitle {
   position: absolute;
   top: 12px;
-  right: 45px;
+  right: 65px;
   z-index: 2;
 }
 
