@@ -5,7 +5,7 @@ Blockly.Blocks['fly_forward'] = {
         .appendField("fly forward");
     this.appendDummyInput()
         .appendField("ft at")
-        .appendField(new Blockly.FieldNumber(5, 1, 15, 1), 'speed')
+        .appendField(new Blockly.FieldNumber(10, 1, 15, 1), 'speed')
         .appendField("mph");
     this.setInputsInline(true);
     this.setPreviousStatement(true);
