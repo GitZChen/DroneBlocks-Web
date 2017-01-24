@@ -42,7 +42,8 @@ Blockly.Python['pitch_gimbal_to'] = function(block) {
 
 Blockly.Python['fly_forward'] = function(block) {
   var distance = Blockly.Python.valueToCode(block, 'distance', Blockly.JavaScript.ORDER_NONE);
-  return 'flyForward(' + distance + ');\n';
+  var speed = block.getFieldValue("speed");
+  return 'flyForward(' + distance + ', ' + speed + ');\n';
 };
 
 Blockly.Python['video'] = function(block) {
