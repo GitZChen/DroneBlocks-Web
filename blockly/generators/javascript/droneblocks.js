@@ -45,19 +45,19 @@ Blockly.JavaScript['yaw_left'] = function(block) {
   var angle = Blockly.JavaScript.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_NONE);
 
   if(isNaN(parseInt(angle))) {
-    return 'mission+="yaw_left," + eval(' + angle + ') + "|";';
+    return 'mission+="yaw_left," + eval(' + angle + ') + ",' + block.id + '|";';
   } else {
-    return 'mission+="yaw_left,' + angle + '|";';
+    return 'mission+="yaw_left,' + angle + ',' + block.id + '|";';
   }
 };
 
 Blockly.JavaScript['photo'] = function(block) {
-  return 'mission+="photo|";';
+  return 'mission+="photo,' + block.id + '|";';
 };
 
 Blockly.JavaScript['pitch_gimbal_to'] = function(block) {
   var angle = block.getFieldValue("angle");
-  return 'mission+="pitch_gimbal,' + angle + '|";';
+  return 'mission+="pitch_gimbal,' + angle + ',' + block.id + '|";';
 };
 
 Blockly.JavaScript['fly_forward'] = function(block) {
