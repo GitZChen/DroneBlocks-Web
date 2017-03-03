@@ -84,14 +84,14 @@ Blockly.utils.removeClass = function(element, className) {
 /**
  * Checks if an element has the specified CSS class.
  * Similar to Closure's goog.dom.classes.has, except it handles SVG elements.
- * @param {!Element} element DOM element to check.    
- * @param {string} className Name of class to check.    
- * @return {boolean} True if class exists, false otherwise.   
- * @private   
- */   
- Blockly.utils.hasClass = function(element, className) {    
-   var classes = element.getAttribute('class');    
-   return (' ' + classes + ' ').indexOf(' ' + className + ' ') != -1;    
+ * @param {!Element} element DOM element to check.
+ * @param {string} className Name of class to check.
+ * @return {boolean} True if class exists, false otherwise.
+ * @private
+ */
+ Blockly.utils.hasClass = function(element, className) {
+   var classes = element.getAttribute('class');
+   return (' ' + classes + ' ').indexOf(' ' + className + ' ') != -1;
  };
 
 /**
@@ -144,7 +144,7 @@ Blockly.utils.getRelativeXY = function(element) {
     }
   }
 
-  // Then check for style = transform: translate(...) or translate3d(...) 
+  // Then check for style = transform: translate(...) or translate3d(...)
   var style = element.getAttribute('style');
   if (style && style.indexOf('translate') > -1) {
     var styleComponents = style.match(Blockly.utils.getRelativeXY.XY_2D_REGEX_);
@@ -164,7 +164,7 @@ Blockly.utils.getRelativeXY = function(element) {
 
 /**
  * Return the coordinates of the top-left corner of this element relative to
- * the div blockly was injected into. 
+ * the div blockly was injected into.
  * @param {!Element} element SVG element to find the coordinates of. If this is
  *     not a child of the div blockly was injected into, the behaviour is
  *     undefined.
@@ -185,7 +185,7 @@ Blockly.utils.getInjectionDivXY_ = function(element) {
     }
     element = element.parentNode;
   }
-  return new goog.math.Coordinate(x, y);    
+  return new goog.math.Coordinate(x, y);
 };
 
 /**
@@ -195,7 +195,7 @@ Blockly.utils.getInjectionDivXY_ = function(element) {
  * @private
  */
 Blockly.utils.getScale_ = function(element) {
-  var scale = 1;  
+  var scale = 1;
   var transform = element.getAttribute('transform');
    if (transform) {
     var transformComponents =
@@ -535,7 +535,7 @@ Blockly.utils.genUid = function() {
  * to properly escape in your own environment.  Issues #251, #625, #682.
  * @private
  */
-Blockly.utils.genUid.soup_ = '!#$%()*+,-./:;=?@[]^_`{|}~' +
+Blockly.utils.genUid.soup_ = '!#$%()*+-./:;=?@[]^_`{}~' +
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
 /**
