@@ -56,7 +56,11 @@ function previewMission() {
   } else if(os == 'Android') {
   	Android.confirmMission(Blockly.JavaScript.workspaceToCode(workspace));
   } else {
-    alert("Preview Mission is only supported on iOS at the moment. We are working on adding desktop support. Stay tuned!");
+    
+    $("#mapPreviewModal").append("<iframe src='map_preview.html' width='100%' height='100%'></iframe>");
+    $("#mapPreviewModal").openModal();
+    
+    //alert("Preview Mission is only supported on iOS at the moment. We are working on adding desktop support. Stay tuned!");
   }
 }
 
@@ -150,6 +154,7 @@ $(document).ready(function() {
       $("div#\\:5").css("cssText", "padding: 3px !important");
       $("div#\\:6").css("cssText", "padding: 3px !important");
       $("div#\\:7").css("cssText", "padding: 3px !important");
+      $("div#\\:8").css("cssText", "padding: 3px !important");
     }
   
     $("#codeView").addClass("hidden");
