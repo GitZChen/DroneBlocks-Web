@@ -65,6 +65,27 @@ Blockly.Python['loop'] = function(block) {
   return code;
 };
 
+Blockly.Python['controls_if'] = function(block) {
+  // If/elseif/else condition.
+  var n = 0;
+  var code = '', branchCode, conditionCode;
+  do {
+    conditionCode = Blockly.Python.valueToCode(block, 'IF' + n,
+      Blockly.Python.ORDER_NONE) || 'false';
+      branchCode = Blockly.Python.statementToCode(block, 'DO' + n) || '';
+    code += (n == 0 ? 'if (' : '} else if (' ) + conditionCode + ') {\n' + branchCode;
+
+    ++n;
+  } while (block.getInput('IF' + n));
+
+  if (block.getInput('ELSE')) {
+    branchCode = Blockly.Python.statementToCode(block, 'ELSE') ||
+        Blockly.Python.PASS;
+    code += '} else {\n' + branchCode + '}\n'; 
+  }
+  return code;
+};
+
 Blockly.Python['variables_set'] = function(block) {
   // Variable setter.
   var argument0 = Blockly.Python.valueToCode(block, 'VALUE',
