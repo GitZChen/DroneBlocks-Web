@@ -1,16 +1,16 @@
 Blockly.JavaScript['takeoff'] = function(block) {
   var altitude = block.getFieldValue("altitude");
-  return 'mission+="takeoff,' + altitude + ',' + block.id + '|";';
+  return 'mission+="takeoff,' + altitude + '|";';
 };
 
 Blockly.JavaScript['flight_path'] = function(block) {
   var path = block.getFieldValue("path");
-  return 'mission+="flight_path,' + path + ',' + block.id + '|";';
+  return 'mission+="flight_path,' + path + '|";';
 };
 
 Blockly.JavaScript['heading_mode'] = function(block) {
   var mode = block.getFieldValue("mode");
-  return 'mission+="heading_mode,' + mode + ',' + block.id + '|";';
+  return 'mission+="heading_mode,' + mode + '|";';
 };
 
 Blockly.JavaScript['land'] = function(block) {
@@ -23,51 +23,51 @@ Blockly.JavaScript['land_home'] = function(block) {
 
 Blockly.JavaScript['hover'] = function(block) {
   var duration = Blockly.JavaScript.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_NONE);
-
+  
   if(isNaN(parseInt(duration))) {
-    return 'mission+="hover," + eval(' + duration + ') + ",' + block.id + '|";';
+    return 'mission+="hover," + eval(' + duration + ') + "|";';
   } else {
-    return 'mission+="hover,' + duration + ',' + block.id + '|";';
+    return 'mission+="hover,' + duration + '|";';
   }
 };
 
 Blockly.JavaScript['yaw_right'] = function(block) {
   var angle = Blockly.JavaScript.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_NONE);
-
+  
   if(isNaN(parseInt(angle))) {
-    return 'mission+="yaw_right," + eval(' + angle + ') + ",' + block.id + '|";';
+    return 'mission+="yaw_right," + eval(' + angle + ') + "|";';
   } else {
-    return 'mission+="yaw_right,' + angle + ',' + block.id + '|";';
+    return 'mission+="yaw_right,' + angle + '|";';
   }
 };
 
 Blockly.JavaScript['yaw_left'] = function(block) {
   var angle = Blockly.JavaScript.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_NONE);
-
+  
   if(isNaN(parseInt(angle))) {
-    return 'mission+="yaw_left," + eval(' + angle + ') + ",' + block.id + '|";';
+    return 'mission+="yaw_left," + eval(' + angle + ') + "|";';
   } else {
-    return 'mission+="yaw_left,' + angle + ',' + block.id + '|";';
+    return 'mission+="yaw_left,' + angle + '|";';
   }
 };
 
 Blockly.JavaScript['photo'] = function(block) {
-  return 'mission+="photo,' + block.id + '|";';
+  return 'mission+="photo|";';
 };
 
 Blockly.JavaScript['pitch_gimbal_to'] = function(block) {
   var angle = block.getFieldValue("angle");
-  return 'mission+="pitch_gimbal,' + angle + ',' + block.id + '|";';
+  return 'mission+="pitch_gimbal,' + angle + '|";';
 };
 
 Blockly.JavaScript['fly_forward'] = function(block) {
   var distance = Blockly.JavaScript.valueToCode(block, 'distance', Blockly.JavaScript.ORDER_NONE);
   var speed = block.getFieldValue("speed");
-
+  
   if(isNaN(parseInt(distance))) {
-    return 'mission+="::fly_forward," + eval(' + distance + ') + ",' + speed + ',' + block.id + '|";';
+    return 'mission+="::fly_forward," + eval(' + distance + ') + "|";';
   } else {
-    return 'mission+="::fly_forward,' + distance + ',' + speed + ',' + block.id + '|";';
+    return 'mission+="::fly_forward,' + distance + ',' + speed + '|";';
   }
 };
 
@@ -101,7 +101,7 @@ Blockly.JavaScript['loop'] = function(block) {
 
 Blockly.JavaScript['change_altitude'] = function(block) {
   var altitude = Blockly.JavaScript.valueToCode(block, 'altitude', Blockly.JavaScript.ORDER_NONE);
-
+  
   if(isNaN(parseInt(altitude))) {
     return 'mission+="::change_altitude," + eval(' + altitude + ') + "|";';
   } else {
