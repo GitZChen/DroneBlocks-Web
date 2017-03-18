@@ -19,7 +19,9 @@ function initMapPreview() {
   google_map = new google.maps.Map(document.getElementById('map'), {
     zoom: 4,
     center: center,
-    mapTypeId: 'hybrid'
+    mapTypeId: 'hybrid',
+    tilt: 0,
+    rotateControl: false
   });
   
   // New waypoint based on distance and heading
