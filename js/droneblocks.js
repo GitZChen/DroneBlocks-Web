@@ -51,17 +51,22 @@ function previewMission() {
   code = eval(code);
   
   var os = getMobileOS();
+  
   if(os == 'iOS') {
+    
     window.webkit.messageHandlers.observe.postMessage(code);
+    
   } else if(os == 'Android') {
+    
   	Android.confirmMission(Blockly.JavaScript.workspaceToCode(workspace));
+    
   } else {
     
-    $("#mapPreviewModal").append("<iframe src='map_preview.html' width='100%' height='100%'></iframe>");
+    $("#mapPreviewModal").html("<iframe src='map_preview.html?code=" + escape(code) + "' width='100%' height='100%'></iframe>");
     $("#mapPreviewModal").openModal();
     
-    //alert("Preview Mission is only supported on iOS at the moment. We are working on adding desktop support. Stay tuned!");
   }
+  
 }
 
 function toggleCodeView() {
