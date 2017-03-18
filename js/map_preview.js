@@ -137,6 +137,10 @@ function addMarker(latlng, icon, isDraggable) {
     
       home_location = new google.maps.LatLng({lat: event.latLng.lat(), lng: event.latLng.lng()});
       
+      // Save the location in storage
+      localStorage.setItem("home_location_lat", home_location.lat());
+      localStorage.setItem("home_location_lng", home_location.lng());
+      
       // Remove the polyline
       mission_path.setMap(null);
       
