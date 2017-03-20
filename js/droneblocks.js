@@ -217,7 +217,7 @@ $(document).ready(function() {
       missionsRef.once("value", function(snapshot) {
         
         var xml = Blockly.Xml.textToDom(snapshot.val().missionXML);
-        Blockly.Xml.domToWorkspace(workspace, xml);
+        Blockly.Xml.domToWorkspace(xml, workspace);
         
         $("#missionTitle").text(snapshot.val().title);
 
