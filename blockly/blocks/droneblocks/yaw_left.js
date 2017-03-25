@@ -4,7 +4,11 @@ Blockly.Blocks['yaw_left'] = {
         .setCheck("Number")
         .appendField("yaw left");
     this.appendDummyInput()
-        .appendField("degrees");
+        .appendField("°");
+    this.appendDummyInput()
+        .appendField("at")
+        .appendField(new Blockly.FieldNumber(30, 20, 100, 1), 'velocity')
+        .appendField("°/sec");
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);

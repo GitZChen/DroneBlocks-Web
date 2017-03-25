@@ -33,21 +33,23 @@ Blockly.JavaScript['hover'] = function(block) {
 
 Blockly.JavaScript['yaw_right'] = function(block) {
   var angle = Blockly.JavaScript.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_NONE);
+  var velocity = block.getFieldValue("velocity");
   
   if(isNaN(parseInt(angle))) {
-    return 'mission+="yaw_right," + eval(' + angle + ') + "|";';
+    return 'mission+="yaw_right," + eval(' + angle + ') + ",' + velocity + '|";';
   } else {
-    return 'mission+="yaw_right,' + angle + '|";';
+    return 'mission+="yaw_right,' + angle + ',' + velocity + '|";';
   }
 };
 
 Blockly.JavaScript['yaw_left'] = function(block) {
   var angle = Blockly.JavaScript.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_NONE);
+  var velocity = block.getFieldValue("velocity");
   
   if(isNaN(parseInt(angle))) {
-    return 'mission+="yaw_left," + eval(' + angle + ') + "|";';
+    return 'mission+="yaw_left," + eval(' + angle + ') + ",' + velocity + '|";';
   } else {
-    return 'mission+="yaw_left,' + angle + '|";';
+    return 'mission+="yaw_left,' + angle + ',' + velocity + '|";';
   }
 };
 
@@ -65,7 +67,7 @@ Blockly.JavaScript['fly_forward'] = function(block) {
   var speed = block.getFieldValue("speed");
   
   if(isNaN(parseInt(distance))) {
-    return 'mission+="::fly_forward," + eval(' + distance + ') + "|";';
+    return 'mission+="::fly_forward," + eval(' + distance + ') + ",' + speed + '|";';
   } else {
     return 'mission+="::fly_forward,' + distance + ',' + speed + '|";';
   }
