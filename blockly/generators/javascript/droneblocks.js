@@ -23,7 +23,7 @@ Blockly.JavaScript['land_home'] = function(block) {
 
 Blockly.JavaScript['hover'] = function(block) {
   var duration = Blockly.JavaScript.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_NONE);
-  
+
   if(isNaN(parseInt(duration))) {
     return 'mission+="hover," + eval(' + duration + ') + "|";';
   } else {
@@ -34,7 +34,7 @@ Blockly.JavaScript['hover'] = function(block) {
 Blockly.JavaScript['yaw_right'] = function(block) {
   var angle = Blockly.JavaScript.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_NONE);
   var velocity = block.getFieldValue("velocity");
-  
+
   if(isNaN(parseInt(angle))) {
     return 'mission+="yaw_right," + eval(' + angle + ') + ",' + velocity + '|";';
   } else {
@@ -45,7 +45,7 @@ Blockly.JavaScript['yaw_right'] = function(block) {
 Blockly.JavaScript['yaw_left'] = function(block) {
   var angle = Blockly.JavaScript.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_NONE);
   var velocity = block.getFieldValue("velocity");
-  
+
   if(isNaN(parseInt(angle))) {
     return 'mission+="yaw_left," + eval(' + angle + ') + ",' + velocity + '|";';
   } else {
@@ -57,6 +57,10 @@ Blockly.JavaScript['photo'] = function(block) {
   return 'mission+="photo|";';
 };
 
+Blockly.JavaScript['photo_interval'] = function(block) {
+  return 'mission+="photo_interval|";';
+};
+
 Blockly.JavaScript['pitch_gimbal_to'] = function(block) {
   var angle = block.getFieldValue("angle");
   return 'mission+="pitch_gimbal,' + angle + '|";';
@@ -65,7 +69,7 @@ Blockly.JavaScript['pitch_gimbal_to'] = function(block) {
 Blockly.JavaScript['fly_forward'] = function(block) {
   var distance = Blockly.JavaScript.valueToCode(block, 'distance', Blockly.JavaScript.ORDER_NONE);
   var speed = block.getFieldValue("speed");
-  
+
   if(isNaN(parseInt(distance))) {
     return 'mission+="::fly_forward," + eval(' + distance + ') + ",' + speed + '|";';
   } else {
@@ -103,7 +107,7 @@ Blockly.JavaScript['loop'] = function(block) {
 
 Blockly.JavaScript['change_altitude'] = function(block) {
   var altitude = Blockly.JavaScript.valueToCode(block, 'altitude', Blockly.JavaScript.ORDER_NONE);
-  
+
   if(isNaN(parseInt(altitude))) {
     return 'mission+="::change_altitude," + eval(' + altitude + ') + "|";';
   } else {
