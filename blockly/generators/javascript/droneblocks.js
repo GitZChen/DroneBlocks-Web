@@ -58,7 +58,9 @@ Blockly.JavaScript['photo'] = function(block) {
 };
 
 Blockly.JavaScript['photo_interval'] = function(block) {
-  return 'mission+="photo_interval|";';
+  var photo_count = block.getFieldValue("photo_count");
+  var interval = block.getFieldValue("interval");
+  return 'mission+="photo_interval,' + photo_count + ',' + interval + '|";';
 };
 
 Blockly.JavaScript['pitch_gimbal_to'] = function(block) {
