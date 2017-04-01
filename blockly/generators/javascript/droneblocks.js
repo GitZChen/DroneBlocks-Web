@@ -84,6 +84,11 @@ Blockly.JavaScript['video'] = function(block) {
   return 'mission+="video,' + action + '|";';
 };
 
+Blockly.JavaScript['video_duration'] = function(block) {
+  var duration = block.getFieldValue("duration");
+  return 'mission+="video_duration,' + duration + '|";';
+};
+
 /*
 Blockly.JavaScript['orbit'] = function(block) {
   var radius = block.getFieldValue('radius');
