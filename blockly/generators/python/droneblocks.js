@@ -33,6 +33,12 @@ Blockly.Python['yaw_left'] = function(block) {
   return 'yawLeft(' + angle + ', ' + velocity + ');\n';
 };
 
+Blockly.Python['orbit'] = function(block) {
+  var radius = Blockly.Python.valueToCode(block, 'radius', Blockly.JavaScript.ORDER_NONE);
+  var velocity = block.getFieldValue("velocity");
+  return 'orbit(' + radius + ', ' + velocity + ');\n';
+};
+
 Blockly.Python['photo'] = function(block) {
   return 'takePhoto();\n';
 };
