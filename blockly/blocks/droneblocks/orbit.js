@@ -2,7 +2,7 @@ Blockly.Blocks['orbit'] = {
   init: function() {
     this.appendValueInput("radius")
         .setCheck("Number")
-        .appendField("Orbit with radius");
+        .appendField("orbit with radius");
     this.appendDummyInput()
         .appendField("ft at ")
         .appendField(new Blockly.FieldNumber('30', 5, 100, 1), 'velocity')
