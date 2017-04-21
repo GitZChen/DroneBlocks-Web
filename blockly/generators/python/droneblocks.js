@@ -102,7 +102,7 @@ Blockly.Python['controls_if'] = function(block) {
         Blockly.Python.PASS;
     code += '} else {\n' + branchCode + '}\n';
   }
-  return code;
+  return code + '}';
 };
 
 Blockly.Python['variables_set'] = function(block) {
