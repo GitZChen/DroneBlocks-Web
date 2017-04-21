@@ -9,7 +9,7 @@ Blockly.Python['flight_path'] = function(block) {
 };
 
 Blockly.Python['land'] = function(block) {
-  return 'land();\n';  
+  return 'land();\n';
 };
 
 Blockly.Python['land_home'] = function(block) {
@@ -23,16 +23,30 @@ Blockly.Python['hover'] = function(block) {
 
 Blockly.Python['yaw_right'] = function(block) {
   var angle = Blockly.Python.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_NONE);
-  return 'yawRight(' + angle + ');\n';
+  var velocity = block.getFieldValue("velocity");
+  return 'yawRight(' + angle + ', ' + velocity + ');\n';
 };
 
 Blockly.Python['yaw_left'] = function(block) {
   var angle = Blockly.Python.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_NONE);
-  return 'yawLeft(' + angle + ');\n';
+  var velocity = block.getFieldValue("velocity");
+  return 'yawLeft(' + angle + ', ' + velocity + ');\n';
+};
+
+Blockly.Python['orbit'] = function(block) {
+  var radius = Blockly.Python.valueToCode(block, 'radius', Blockly.JavaScript.ORDER_NONE);
+  var velocity = block.getFieldValue("velocity");
+  return 'orbit(' + radius + ', ' + velocity + ');\n';
 };
 
 Blockly.Python['photo'] = function(block) {
   return 'takePhoto();\n';
+};
+
+Blockly.Python['photo_interval'] = function(block) {
+  var photo_count = block.getFieldValue("photo_count");
+  var interval = block.getFieldValue("interval");
+  return 'takePhoto(' + photo_count + ', ' + interval + ');\n';
 };
 
 Blockly.Python['pitch_gimbal_to'] = function(block) {
@@ -42,12 +56,18 @@ Blockly.Python['pitch_gimbal_to'] = function(block) {
 
 Blockly.Python['fly_forward'] = function(block) {
   var distance = Blockly.Python.valueToCode(block, 'distance', Blockly.JavaScript.ORDER_NONE);
-  return 'flyForward(' + distance + ');\n';
+  var speed = block.getFieldValue("speed");
+  return 'flyForward(' + distance + ', ' + speed + ');\n';
 };
 
 Blockly.Python['video'] = function(block) {
   var action = block.getFieldValue("video_status");
-  return 'video(' + action + ');\n';
+  return "video('" + action + "');\n";
+};
+
+Blockly.Python['video_duration'] = function(block) {
+  var duration = block.getFieldValue("duration");
+  return "video('start', " + duration + ");\n";
 };
 
 Blockly.Python['change_altitude'] = function(block) {
@@ -62,6 +82,27 @@ Blockly.Python['loop'] = function(block) {
   code += '  ' + branch + '\n';
   code += "}\n\n";
   return code;
+};
+
+Blockly.Python['controls_if'] = function(block) {
+  // If/elseif/else condition.
+  var n = 0;
+  var code = '', branchCode, conditionCode;
+  do {
+    conditionCode = Blockly.Python.valueToCode(block, 'IF' + n,
+      Blockly.Python.ORDER_NONE) || 'false';
+      branchCode = Blockly.Python.statementToCode(block, 'DO' + n) || '';
+    code += (n == 0 ? 'if (' : '} else if (' ) + conditionCode + ') {\n' + branchCode;
+
+    ++n;
+  } while (block.getInput('IF' + n));
+
+  if (block.getInput('ELSE')) {
+    branchCode = Blockly.Python.statementToCode(block, 'ELSE') ||
+        Blockly.Python.PASS;
+    code += '} else {\n' + branchCode + '}\n';
+  }
+  return code + '}';
 };
 
 Blockly.Python['variables_set'] = function(block) {

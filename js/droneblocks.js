@@ -46,15 +46,27 @@ function getMobileOS() {
 
 function previewMission() {
   
-  var code = Blockly.JavaScript.workspaceToCode(workspace);
+  var code = 'var mission="";'
+  code += Blockly.JavaScript.workspaceToCode(workspace);
   code = eval(code);
   
   var os = getMobileOS();
+  
   if(os == 'iOS') {
+    
     window.webkit.messageHandlers.observe.postMessage(code);
+    
   } else if(os == 'Android') {
+    
   	Android.confirmMission(Blockly.JavaScript.workspaceToCode(workspace));
+    
+  } else {
+    
+    $("#mapPreviewModal").html("<iframe src='map_preview.html?code=" + escape(code) + "' width='100%' height='100%'></iframe>");
+    $("#mapPreviewModal").openModal();
+    
   }
+  
 }
 
 function toggleCodeView() {
@@ -147,6 +159,7 @@ $(document).ready(function() {
       $("div#\\:5").css("cssText", "padding: 3px !important");
       $("div#\\:6").css("cssText", "padding: 3px !important");
       $("div#\\:7").css("cssText", "padding: 3px !important");
+      $("div#\\:8").css("cssText", "padding: 3px !important");
     }
   
     $("#codeView").addClass("hidden");
@@ -204,7 +217,7 @@ $(document).ready(function() {
       missionsRef.once("value", function(snapshot) {
         
         var xml = Blockly.Xml.textToDom(snapshot.val().missionXML);
-        Blockly.Xml.domToWorkspace(workspace, xml);
+        Blockly.Xml.domToWorkspace(xml, workspace);
         
         $("#missionTitle").text(snapshot.val().title);
 

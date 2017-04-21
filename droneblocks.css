@@ -91,44 +91,58 @@ div#\:4 .blocklyTreeSelected {
 }
 
 div#\:5 {
-  background-color: #5a65a7 !important;
+  background-color: #aa3a3a !important;
   padding: 10px !important;
   color: #FFFFFF !important;
 }
 
 div#\:5 .blocklyTreeRow:hover {
-  background-color: #373e66 !important;
+  background-color: #662121 !important;
 }
 
 div#\:5 .blocklyTreeSelected {
-  background-color: #373e66 !important;
+  background-color: #662121 !important;
 }
 
 div#\:6 {
-  background-color: #a65a80 !important;
+  background-color: #5a65a7 !important;
   padding: 10px !important;
   color: #FFFFFF !important;
 }
 
 div#\:6 .blocklyTreeRow:hover {
-  background-color: #723e58 !important;
+  background-color: #373e66 !important;
 }
 
 div#\:6 .blocklyTreeSelected {
-  background-color: #723e58 !important;
+  background-color: #373e66 !important;
 }
 
 div#\:7 {
-  background-color: #E76F51 !important;
+  background-color: #a65a80 !important;
   padding: 10px !important;
   color: #FFFFFF !important;
 }
 
 div#\:7 .blocklyTreeRow:hover {
-  background-color: #B2553E !important;
+  background-color: #723e58 !important;
 }
 
 div#\:7 .blocklyTreeSelected {
+  background-color: #723e58 !important;
+}
+
+div#\:8 {
+  background-color: #E76F51 !important;
+  padding: 10px !important;
+  color: #FFFFFF !important;
+}
+
+div#\:8 .blocklyTreeRow:hover {
+  background-color: #B2553E !important;
+}
+
+div#\:8 .blocklyTreeSelected {
   background-color: #B2553E !important;
 }
 /* End block category styling */
@@ -167,14 +181,14 @@ div#codeView.visible {
 a#hamburger {
   position: absolute;
   top: 0px;
-  right: 0px;
+  right: 20px;
   z-index: 1;
 }
 
 div#missionTitle {
   position: absolute;
   top: 12px;
-  right: 45px;
+  right: 65px;
   z-index: 2;
 }
 

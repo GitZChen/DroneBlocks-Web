@@ -3,12 +3,15 @@ Blockly.Blocks['fly_forward'] = {
     this.appendValueInput("distance")
         .setCheck("Number")
         .appendField("fly forward");
-        //.appendField(new Blockly.FieldDropdown([["forward", "forward"], ["right", "right"], ["left", "left"], ["backward", "backward"]]), "direction");
     this.appendDummyInput()
-        .appendField("ft");
+        .appendField("ft at")
+        .appendField(new Blockly.FieldNumber(10, 5, 25, 1), 'speed')
+        .appendField("mph");
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour('#2A9D8F');
+    this.setTooltip('');
+    this.setHelpUrl('');
   }
 };
