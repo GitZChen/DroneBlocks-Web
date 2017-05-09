@@ -6,9 +6,30 @@ var ref = firebase.database().ref();
 
 function login() {
   
-  var provider = new firebase.auth.GoogleAuthProvider();
-  provider.addScope("email");
-  firebase.auth().signInWithRedirect(provider);
+  // This was introduced because of Google auth requirements
+  if(getMobileOS() == 'iOS') {
+    
+    // Send the login message to iOS
+    window.webkit.messageHandlers.observe.postMessage("login");
+    
+    // Hide the side bar after button click
+    $(".button-collapse").sideNav("hide");
+    
+  } else {
+  
+    var provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope("email");
+    firebase.auth().signInWithRedirect(provider);
+    
+  }
+}
+
+// This gets called from iOS after token is received
+function loginFromiOS(idToken) {
+  var credential = firebase.auth.GoogleAuthProvider.credential(idToken);
+  firebase.auth().signInWithCredential(credential).catch(function(error) {
+    //Materialize.toast("Error with signinWithCredential", 3000);
+  });
 }
 
 function initAuth() {
@@ -146,6 +167,12 @@ function logout() {
   //$("#shareMission").hide();
   $("#myMissions").hide();
   
+  // Send the logout message to iOS
+  if(getMobileOS() == "iOS") {
+    window.webkit.messageHandlers.observe.postMessage("logout");
+  }
+  
+  userId = '';
   firebase.auth().signOut();
 }
 
