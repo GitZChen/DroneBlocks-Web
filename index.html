@@ -28,7 +28,7 @@
   <script src="./blockly/blocks/droneblocks/video.js"></script>
   <script src="./blockly/blocks/droneblocks/video_duration.js"></script>
   <script src="./blockly/blocks/droneblocks/orbit.js"></script>
-  <script src="./blockly/blocks/droneblocks/loop.js"></script>
+  <script src="./blockly/blocks/droneblocks/loop_with_variable.js"></script>
   <script src="./blockly/blocks/droneblocks/follow.js"></script>
   <link rel="stylesheet" type="text/css" href="./droneblocks.css">
   <link rel="stylesheet" type="text/css" href="./blockly/prettify.css">
@@ -152,7 +152,11 @@
     </category>
     <category name="Camera">
       <block type="pitch_gimbal_to">
-        <field name="angle">0</field>
+        <value name="angle">
+          <block type="math_number">
+            <field name="NUM">0</field>
+          </block>
+        </value>
       </block>
       <block type="photo"></block>
       <block type="photo_interval"></block>
@@ -160,7 +164,7 @@
       <block type="video_duration"></block>
     </category>
     <category name="Loops">
-      <block type="loop">
+      <block type="loop_with_variable">
         <value name="TIMES">
           <block type="math_number">
             <field name="NUM">3</field>
@@ -183,6 +187,7 @@
       </block>
       <block type="math_arithmetic"></block>
       <block type="math_number_property"></block>
+      <block type="math_trig"></block>
     </category>
     <category name="Variables" custom="VARIABLE">
     </category>
