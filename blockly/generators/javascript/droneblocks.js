@@ -1,6 +1,11 @@
 Blockly.JavaScript['takeoff'] = function(block) {
-  var altitude = block.getFieldValue("altitude");
-  return 'mission+="takeoff,' + altitude + '|";';
+  var altitude = Blockly.JavaScript.valueToCode(block, 'altitude', Blockly.JavaScript.ORDER_NONE);
+
+  if(isNaN(parseInt(altitude))) {
+    return 'mission+="takeoff," + eval(' + altitude + ') + "|";';
+  } else {
+    return 'mission+="takeoff,' + altitude + '|";';
+  }
 };
 
 Blockly.JavaScript['flight_path'] = function(block) {

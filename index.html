@@ -109,7 +109,13 @@
 
   <xml id="toolbox" style="display: none">
     <category name="Takeoff">
-      <block type="takeoff"></block>
+      <block type="takeoff">
+        <value name="altitude">
+          <block type="math_number">
+            <field name="NUM">25</field>
+          </block>
+        </value>
+      </block>
       <!--<block type="flight_path"></block>-->
       <!--<block type="heading_mode"></block>-->
     </category>
