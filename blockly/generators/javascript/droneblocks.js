@@ -64,8 +64,13 @@ Blockly.JavaScript['photo_interval'] = function(block) {
 };
 
 Blockly.JavaScript['pitch_gimbal_to'] = function(block) {
-  var angle = block.getFieldValue("angle");
-  return 'mission+="pitch_gimbal,' + angle + '|";';
+  var angle = Blockly.JavaScript.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_NONE);
+
+  if(isNaN(parseInt(angle))) {
+    return 'mission+="pitch_gimbal," + eval(' + angle + ') + "|";';
+  } else {
+    return 'mission+="pitch_gimbal,' + angle + '|";';
+  }
 };
 
 Blockly.JavaScript['fly_forward'] = function(block) {
