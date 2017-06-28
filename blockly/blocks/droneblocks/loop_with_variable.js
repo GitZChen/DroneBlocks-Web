@@ -1,4 +1,4 @@
-Blockly.Blocks['loop_with_variable'] = {
+Blockly.Blocks['loop'] = {
   /**
    * Block for repeat n times (external number).
    * @this Blockly.Block

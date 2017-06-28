@@ -75,7 +75,7 @@ Blockly.Python['change_altitude'] = function(block) {
   return 'change_altitude(' + altitude + ');\n';
 };
 
-Blockly.Python['loop_with_variable'] = function(block) {
+Blockly.Python['loop'] = function(block) {
   var repeats = Blockly.Python.valueToCode(block, 'TIMES', Blockly.JavaScript.ORDER_NONE);
   var branch = Blockly.Python.statementToCode(block, 'DO').trim();
   var code = "\nfor (var count = 0; count < " + repeats + "; count++) {\n";
