@@ -1,6 +1,11 @@
 Blockly.JavaScript['takeoff'] = function(block) {
-  var altitude = block.getFieldValue("altitude");
-  return 'mission+="takeoff,' + altitude + '|";';
+  var altitude = Blockly.JavaScript.valueToCode(block, 'altitude', Blockly.JavaScript.ORDER_NONE);
+
+  if(isNaN(parseInt(altitude))) {
+    return 'mission+="takeoff," + eval(' + altitude + ') + "|";';
+  } else {
+    return 'mission+="takeoff,' + altitude + '|";';
+  }
 };
 
 Blockly.JavaScript['flight_path'] = function(block) {
@@ -64,8 +69,13 @@ Blockly.JavaScript['photo_interval'] = function(block) {
 };
 
 Blockly.JavaScript['pitch_gimbal_to'] = function(block) {
-  var angle = block.getFieldValue("angle");
-  return 'mission+="pitch_gimbal,' + angle + '|";';
+  var angle = Blockly.JavaScript.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_NONE);
+
+  if(isNaN(parseInt(angle))) {
+    return 'mission+="pitch_gimbal," + eval(' + angle + ') + "|";';
+  } else {
+    return 'mission+="pitch_gimbal,' + angle + '|";';
+  }
 };
 
 Blockly.JavaScript['fly_forward'] = function(block) {
@@ -111,16 +121,11 @@ Blockly.JavaScript['orbit'] = function(block) {
 };
 */
 
-Blockly.JavaScript['loop'] = function(block) {
-  var repeats = Number(block.getFieldValue('TIMES'));
+Blockly.JavaScript['loop_with_variable'] = function(block) {
+  var repeats = Blockly.JavaScript.valueToCode(block, 'TIMES', Blockly.JavaScript.ORDER_NONE);
   var branch = Blockly.JavaScript.statementToCode(block, 'DO').trim();
-  var code = "";
-
-  for(var i=0; i < repeats; i++) {
-    code += branch;
-  }
-
-  return code;
+  var code = "for(var i = 0; i < " + repeats + "; i++){" + branch + "}";
+  return code;  
 };
 
 Blockly.JavaScript['change_altitude'] = function(block) {
