@@ -4,6 +4,9 @@ var home_location;
 var mission_path;
 var waypoint_markers = [];
 
+// Global info window to display altitude and other params
+var infoWindow;
+
 Number.prototype.toRad = function() {
    return this * Math.PI / 180;
 }
@@ -13,6 +16,9 @@ Number.prototype.toDeg = function() {
 }
 
 function initMapPreview() {
+  
+  // Initialize the info window
+  infoWindow = new google.maps.InfoWindow()
   
   var center = {lat: 39.57182223734374, lng: -98.7890625};
   
@@ -50,7 +56,7 @@ function initMapPreview() {
     
     home_location = new google.maps.LatLng({lat: parseFloat(home_location_lat), lng: parseFloat(localStorage.getItem("home_location_lng"))});
     
-    addMarker(new google.maps.LatLng({lat: home_location.lat(), lng: home_location.lng()}), 'home', true);
+    addMarker(new google.maps.LatLng({lat: home_location.lat(), lng: home_location.lng()}), 'home', true, "Takeoff");
     
     google_map.setCenter({lat: home_location.lat(), lng: home_location.lng()});
     
@@ -88,7 +94,7 @@ function estimateUserLocation() {
       localStorage.setItem("home_location_lat", pos.lat);
       localStorage.setItem("home_location_lng", pos.lng);
       
-      addMarker(home_location, 'home', true);
+      addMarker(home_location, 'home', true, "Takeoff");
       
       drawMission();
       
@@ -119,13 +125,19 @@ function getParameterByName(name, url) {
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-function addMarker(latlng, icon, isDraggable) {
+function addMarker(latlng, icon, isDraggable, content) {
   
   var marker = new google.maps.Marker({
     position: latlng,
     map: google_map,
     icon: 'icons/' + icon + '.png',
     draggable: isDraggable
+  });
+  
+  // Listen for a click to display the info window
+  marker.addListener('click', function() {
+    infoWindow.setContent(content);
+    infoWindow.open(map, marker);
   });
   
   // Add marker to the array
@@ -158,13 +170,12 @@ function addMarker(latlng, icon, isDraggable) {
       marker_count = 2;
       
       // Add the home marker again
-      addMarker(home_location, 'home', true);
+      addMarker(home_location, 'home', true, "Takeoff");
       
       // Redraw the mission
       drawMission();
     
     }); 
-    
   }
 }
 
@@ -180,12 +191,28 @@ function drawMission() {
     {lat: current_location.lat(), lng: current_location.lng()}
   ];
 
+  var current_altitude = 0;
+  var gimbal_pitch = 0;
+  
   // Loop through the command string
   for (i=0; i < commands.length; i++) {
     
     var command = commands[i];
+    console.log(command);
     
-    if (command.indexOf("fly_forward") != -1){
+    if (command.indexOf("takeoff") != -1) {
+      
+      current_altitude = command.split(",")[1];
+      
+    } else if (command.indexOf("change_altitude") != -1) {
+      
+      current_altitude = command.split(",")[1];
+      
+    } else if (command.indexOf("fly_forward") != -1) {
+      
+      var infoWindowContent = "<strong>Lat:</strong> " + current_location.lat() + "<br />";
+      infoWindowContent += "<strong>Lng:</strong> " + current_location.lng() + "<br />";
+      infoWindowContent += "<strong>Altitude:</strong> " + current_altitude + " ft<br />";
       
       var params = command.split(",");
       var dist = params[1];
@@ -193,7 +220,7 @@ function drawMission() {
       current_location = current_location.destinationPoint(current_heading, parseInt(dist));
       polyline_coords.push({lat: current_location.lat(), lng: current_location.lng()});
 
-      addMarker(current_location, 'marker' + marker_count, false);
+      addMarker(current_location, 'marker' + marker_count, false, infoWindowContent);
       
       marker_count++;
       
