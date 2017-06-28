@@ -1,5 +1,5 @@
 Blockly.Python['takeoff'] = function(block) {
-  var altitude = block.getFieldValue("altitude");
+  var altitude = Blockly.Python.valueToCode(block, 'altitude', Blockly.JavaScript.ORDER_NONE);
   return 'takeoff(' + altitude + ');\n';
 };
 
@@ -50,7 +50,7 @@ Blockly.Python['photo_interval'] = function(block) {
 };
 
 Blockly.Python['pitch_gimbal_to'] = function(block) {
-  var angle = block.getFieldValue("angle");
+  var angle = Blockly.Python.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_NONE);
   return 'pitchGimbal(' + angle + ');\n';
 };
 
@@ -75,8 +75,8 @@ Blockly.Python['change_altitude'] = function(block) {
   return 'change_altitude(' + altitude + ');\n';
 };
 
-Blockly.Python['loop'] = function(block) {
-  var repeats = Number(block.getFieldValue('TIMES'));
+Blockly.Python['loop_with_variable'] = function(block) {
+  var repeats = Blockly.Python.valueToCode(block, 'TIMES', Blockly.JavaScript.ORDER_NONE);
   var branch = Blockly.Python.statementToCode(block, 'DO').trim();
   var code = "\nfor (var count = 0; count < " + repeats + "; count++) {\n";
   code += '  ' + branch + '\n';
