@@ -28,7 +28,7 @@ $(document).ready(function() {
         row += '<a href="#!" onClick="deleteMissionConfirm(\'' + snapshot.key +'\');"><i class="material-icons">delete</i></a>';
         row += '</td></tr>'
     
-        $("#tbody").append(row);
+        $("#tbody").prepend(row);
     
       });
     
