@@ -122,9 +122,10 @@ Blockly.JavaScript['orbit'] = function(block) {
 */
 
 Blockly.JavaScript['loop'] = function(block) {
-  var repeats = Blockly.JavaScript.valueToCode(block, 'TIMES', Blockly.JavaScript.ORDER_NONE);
+  var loopVar = Blockly.JavaScript.variableDB_.getDistinctName('count', Blockly.Variables.NAME_TYPE);
+  var repeats = Blockly.JavaScript.valueToCode(block, 'TIMES', Blockly.JavaScript.ORDER_NONE);  
   var branch = Blockly.JavaScript.statementToCode(block, 'DO').trim();
-  var code = "for(var i = 0; i < " + repeats + "; i++){" + branch + "}";
+  var code = "for(var " + loopVar + " = 0; " + loopVar + " < " + repeats + "; " + loopVar + "++){" + branch + "}";
   return code;  
 };
 

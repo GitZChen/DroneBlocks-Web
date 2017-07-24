@@ -77,7 +77,7 @@ function toggleCodeView() {
     $("#codeView").removeClass("hidden");
     $("#codeView").addClass("block");
     $("#codeViewButton a").html("X");
-    $("#code").html(PR.prettyPrintOne(Blockly.Python.workspaceToCode()));
+    $("#code").html(PR.prettyPrintOne(Blockly.Python.workspaceToCode(workspace)));
     $("#showCode").text("Hide Mission Code");
   } else {
     $("#showCode").text("Show Mission Code");
@@ -132,7 +132,7 @@ function saveBlocks() {
   BlocklyStorage.backupBlocks_(Blockly.getMainWorkspace());
   
   if(isCodeViewOpen) {
-    document.getElementById("code").innerHTML = PR.prettyPrintOne(Blockly.Python.workspaceToCode());
+    document.getElementById("code").innerHTML = PR.prettyPrintOne(Blockly.Python.workspaceToCode(workspace));
   }
   
   // Update text field for debugging
