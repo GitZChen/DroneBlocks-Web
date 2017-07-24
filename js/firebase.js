@@ -115,7 +115,7 @@ function saveMission() {
         var h6 = $("#saveMissionModal").find("h6");
         h6.text("You must provide a mission title before saving");
         h6.css({"color": "red"});
-        return
+        return;
       }
       
       if (missionId == null) {

@@ -177,8 +177,15 @@ $(document).ready(function() {
     });
   
     $("#saveMission").click(function() {
+      
       // We only prompt on the first save of the mission
       if(missionId == null) {
+        
+        // Update the save text in the modal
+        var h6 = $("#saveMissionModal").find("h6");
+        h6.text("Please enter a mission title below and click SAVE");
+        h6.css({"color": "black"});
+        
         $('#saveMissionModal').openModal();
       } else {
         saveMission();
