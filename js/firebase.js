@@ -110,15 +110,16 @@ function saveMission() {
     
       var missionXML = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace));
       
-      // Make sure there is a mission title
-      if(!$("#title").val()) {
-        var h6 = $("#saveMissionModal").find("h6");
-        h6.text("You must provide a mission title before saving");
-        h6.css({"color": "red"});
-        return;
-      }
-      
+      // Saving a new mission
       if (missionId == null) {
+        
+        // Make sure there is a mission title so the user can save
+        if(!$("#title").val()) {
+          var h6 = $("#saveMissionModal").find("h6");
+          h6.text("You must provide a mission title before saving");
+          h6.css({"color": "red"});
+          return;
+        }
         
         var missionsRef = ref.child("droneblocks/missions");
         var missionsRefPush = missionsRef.push({
@@ -141,7 +142,8 @@ function saveMission() {
         $("#missionTitle").text($("#title").val());
         
         Materialize.toast("Your mission has been created and saved", 3000);
-        
+      
+      // Here we update the mission
       } else {
         
         var missionsRef = ref.child("droneblocks/missions/" + missionId);
@@ -175,6 +177,7 @@ function logout() {
   $("#d2").hide();
   $("#d3").hide();
   $("#saveMission").hide();
+  $("#saveMissionAs").hide();
   //$("#shareMission").hide();
   $("#myMissions").hide();
   

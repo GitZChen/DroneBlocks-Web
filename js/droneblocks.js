@@ -178,6 +178,9 @@ $(document).ready(function() {
   
     $("#saveMission").click(function() {
       
+      // Clear out the mission title from the dialog
+      $("#title").text("");
+      
       // We only prompt on the first save of the mission
       if(missionId == null) {
         
@@ -190,6 +193,17 @@ $(document).ready(function() {
       } else {
         saveMission();
       }
+      
+    });
+    
+    // Save mission as a new one
+    $("#saveMissionAs").click(function() {
+      
+      // Null out the mission id so a new one will be created
+      missionId = null;
+      
+      // We need to figure out what to do if the user hits the cancel button
+      $('#saveMissionModal').openModal();
       
     });
     
@@ -215,11 +229,14 @@ $(document).ready(function() {
     
     // Let's setup the block canvas
     // See if this is a shared mission
-    if(getUrlParam("share") != null) {
+    if(getUrlParam("share") != null || getUrlParam("view") != null) {
   
       // This is local and not a global
       var id = getUrlParam("missionId");
       var missionsRef = ref.child("droneblocks/missions/" + id);
+      
+      // Update the mission id global so this mission can be updated
+      missionId = id;
       
       missionsRef.once("value", function(snapshot) {
         
