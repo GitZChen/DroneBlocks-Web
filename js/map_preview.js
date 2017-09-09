@@ -182,7 +182,8 @@ function addMarker(latlng, icon, isDraggable, content) {
 // takeoff,25|::fly_forward,25,10|yaw_right,90|::fly_forward,25,10|land
 function drawMission() {
   
-  var code = getParameterByName("code");
+  // Get the code from the parent container
+  var code = parent.getMapPreviewCode()
   var commands = code.split("|");
   
   var current_heading = 0;

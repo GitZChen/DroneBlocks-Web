@@ -69,6 +69,14 @@ function previewMission() {
   
 }
 
+// Called from the map preview iframe
+function getMapPreviewCode() {
+  var code = 'var mission="";'
+  code += Blockly.JavaScript.workspaceToCode(workspace);
+  code = eval(code);
+  return code;
+}
+
 function toggleCodeView() {
   if(!isCodeViewOpen) {
     isCodeViewOpen = true;
