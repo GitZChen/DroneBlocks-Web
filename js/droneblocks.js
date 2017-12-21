@@ -57,8 +57,8 @@ function previewMission() {
     window.webkit.messageHandlers.observe.postMessage(code);
     
   } else if(os == 'Android') {
-    
-  	Android.confirmMission(Blockly.JavaScript.workspaceToCode(workspace));
+
+  	Android.confirmMission(code);
     
   } else {
     
