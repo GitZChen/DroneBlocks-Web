@@ -5,8 +5,8 @@ Our diverse team of educators, programmers, and pilots use unique and exciting s
 
 Watch the App in action on [Youtube](https://youtu.be/nvaCTDGSs_M)  
 *or*  
-access a demo (that is safe and NOT connected to an actual drone) [here](https://dev.droneblocks.io).  
+access a demo (that will not activate an actual drone) [here](https://dev.droneblocks.io).  
 
+Most importantly, please  
 [![Download on the App Store](https://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg)](https://itunes.apple.com/us/app/droneblocks/id1045826508?ls=1&mt=8)
 
-Stay tuned for the Android version!
