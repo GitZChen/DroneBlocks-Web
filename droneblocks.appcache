@@ -1,5 +1,6 @@
 CACHE MANIFEST
 index.html
+missions.html
 blockly/blockly_compressed.js
 blockly/blocks_compressed.js
 blockly/javascript_compressed.js
@@ -27,6 +28,7 @@ blockly/blocks/droneblocks/loop.js
 blockly/blocks/droneblocks/follow.js
 droneblocks.css
 js/droneblocks.js
+js/missions.js
 js/jquery-2.2.3.min.js
 js/firebase.js
 blockly/media/sprites.png
@@ -39,3 +41,6 @@ materialize/js/materialize.min.js
 # Use from network if available
 NETWORK:
 *
+
+# Auto expire app cache when deploying
+#expirethecache12

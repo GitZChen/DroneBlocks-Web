@@ -6,9 +6,30 @@ var ref = firebase.database().ref();
 
 function login() {
   
-  var provider = new firebase.auth.GoogleAuthProvider();
-  provider.addScope("email");
-  firebase.auth().signInWithRedirect(provider);
+  // This was introduced because of Google auth requirements
+  if(getMobileOS() == 'iOS') {
+    
+    // Send the login message to iOS
+    window.webkit.messageHandlers.observe.postMessage("login");
+    
+    // Hide the side bar after button click
+    $(".button-collapse").sideNav("hide");
+    
+  } else {
+  
+    var provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope("email");
+    firebase.auth().signInWithRedirect(provider);
+    
+  }
+}
+
+// This gets called from iOS after token is received
+function loginFromiOS(idToken) {
+  var credential = firebase.auth.GoogleAuthProvider.credential(idToken);
+  firebase.auth().signInWithCredential(credential).catch(function(error) {
+    //Materialize.toast("Error with signinWithCredential", 3000);
+  });
 }
 
 function initAuth() {
@@ -52,8 +73,12 @@ function initAuth() {
         
       });
       
-      // Change the login button with the user's name
-      $("#login").html('<a href="#" id="userInfo" class="light-blue lighten-3 white-text">Hi ' + user.providerData[0].displayName.split(" ")[0] + '!</a>');
+      // Change the login button with the user's name if it exists
+      if (!user.providerData[0].displayName)
+        $("#login").html('<a href="#" id="userInfo" class="light-blue lighten-3 white-text">Hi!</a>');
+      else
+        $("#login").html('<a href="#" id="userInfo" class="light-blue lighten-3 white-text">Hi ' + user.providerData[0].displayName.split(" ")[0] + '!</a>');
+      
       $("#login").removeClass("center-align");
     
       isUserLoggedIn = true;
@@ -85,7 +110,16 @@ function saveMission() {
     
       var missionXML = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace));
       
+      // Saving a new mission
       if (missionId == null) {
+        
+        // Make sure there is a mission title so the user can save
+        if(!$("#title").val()) {
+          var h6 = $("#saveMissionModal").find("h6");
+          h6.text("You must provide a mission title before saving");
+          h6.css({"color": "red"});
+          return;
+        }
         
         var missionsRef = ref.child("droneblocks/missions");
         var missionsRefPush = missionsRef.push({
@@ -108,7 +142,8 @@ function saveMission() {
         $("#missionTitle").text($("#title").val());
         
         Materialize.toast("Your mission has been created and saved", 3000);
-        
+      
+      // Here we update the mission
       } else {
         
         var missionsRef = ref.child("droneblocks/missions/" + missionId);
@@ -119,6 +154,9 @@ function saveMission() {
         Materialize.toast("Your mission has been updated and saved", 3000);
         
       }
+      
+      // Close the modal after saving
+      $('#saveMissionModal').closeModal();
       
     } else {
       
@@ -139,9 +177,16 @@ function logout() {
   $("#d2").hide();
   $("#d3").hide();
   $("#saveMission").hide();
+  $("#saveMissionAs").hide();
   //$("#shareMission").hide();
   $("#myMissions").hide();
   
+  // Send the logout message to iOS
+  if(getMobileOS() == "iOS") {
+    window.webkit.messageHandlers.observe.postMessage("logout");
+  }
+  
+  userId = '';
   firebase.auth().signOut();
 }
 

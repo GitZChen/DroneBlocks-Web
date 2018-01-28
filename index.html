@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html manifest="droneblocks.appcache">
-<html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width; initial-scale=1.25; maximum-scale=1.25; user-scalable=0;" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
   <title>DroneBlocks</title>
   <script src="./js/jquery-2.2.3.min.js"></script>
   <script src="./blockly/blockly_compressed.js"></script>
@@ -27,8 +26,9 @@
   <script src="./blockly/blocks/droneblocks/fly_forward.js"></script>
   <script src="./blockly/blocks/droneblocks/change_altitude.js"></script>
   <script src="./blockly/blocks/droneblocks/video.js"></script>
+  <script src="./blockly/blocks/droneblocks/video_duration.js"></script>
   <script src="./blockly/blocks/droneblocks/orbit.js"></script>
-  <script src="./blockly/blocks/droneblocks/loop.js"></script>
+  <script src="./blockly/blocks/droneblocks/loop_with_variable.js"></script>
   <script src="./blockly/blocks/droneblocks/follow.js"></script>
   <link rel="stylesheet" type="text/css" href="./droneblocks.css">
   <link rel="stylesheet" type="text/css" href="./blockly/prettify.css">
@@ -38,8 +38,8 @@
   <link type="text/css" rel="stylesheet" href="./materialize/css/materialize.min.css"  media="screen,projection"/>
   
   <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-  <script>
+  <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
+  <script> 
     // Initialize Firebase
     var config = {
       apiKey: "AIzaSyBcbAt69BGUjPiOucQbkcNNbcdaSmE-G0o",
@@ -47,6 +47,13 @@
       databaseURL: "https://fiery-inferno-4972.firebaseio.com",
       storageBucket: "",
     };
+    /*var config = {
+      apiKey: "AIzaSyAGgqla_TWV4wVgaQ87HG3VDT0igLA8KhU",
+      authDomain: "droneblocks-staging.firebaseapp.com",
+      databaseURL: "https://droneblocks-staging.firebaseio.com",
+      projectId: "droneblocks-staging",
+      storageBucket: "droneblocks-staging.appspot.com",
+    };*/
     firebase.initializeApp(config);
   </script>
 </head>
@@ -63,8 +70,8 @@
     <li><a href="#" id="showCode">Show Mission Code</a></li>
     <li class="divider"></li>
     <li><a href="#" id="saveMission">Save Mission</a></li>
-    <!--<li class="divider" id="d1"></li>
-    <li><a href="#" id="shareMission">Share Mission</a></li>-->
+    <li class="divider" id="d1"></li>
+    <li><a href="#" id="saveMissionAs">Save Mission As...</a></li>
     <li class="divider" id="d2"></li>
     <li><a href="missions.html" id="myMissions">My Missions</a></li>
     <li class="divider" id="d3"></li>
@@ -87,9 +94,14 @@
     </div>
     
     <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-light btn z-depth-0" id="saveModal">Save</a>
+      <a href="#!" class=" modal-action waves-effect waves-light btn z-depth-0" id="saveModal">Save</a>
       <a href="#!" class=" modal-action modal-close waves-effect waves-light btn-flat">Cancel</a>
     </div>
+    
+  </div>
+  
+  <!-- Map preview modal -->
+  <div id="mapPreviewModal" class="modal" style="width: 95% !important; height: 100% !important">
     
   </div>
   
@@ -104,7 +116,13 @@
 
   <xml id="toolbox" style="display: none">
     <category name="Takeoff">
-      <block type="takeoff"></block>
+      <block type="takeoff">
+        <value name="altitude">
+          <block type="math_number">
+            <field name="NUM">25</field>
+          </block>
+        </value>
+      </block>
       <!--<block type="flight_path"></block>-->
       <!--<block type="heading_mode"></block>-->
     </category>
@@ -146,10 +164,17 @@
       </block>
     </category>
     <category name="Camera">
-      <block type="pitch_gimbal_to"></block>
+      <block type="pitch_gimbal_to">
+        <value name="angle">
+          <block type="math_number">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+      </block>
       <block type="photo"></block>
-      <!--<block type="photo_interval"></block>-->
+      <block type="photo_interval"></block>
       <block type="video"></block>
+      <block type="video_duration"></block>
     </category>
     <category name="Loops">
       <block type="loop">
@@ -164,11 +189,18 @@
       <block type="orbit"></block>
       <block type="follow"></block>
     </category>-->
+    <category name="Logic">
+      <block type="controls_if"></block>
+      <block type="logic_compare"></block>
+      <block type="logic_operation"></block>
+    </category>
     <category name="Math">
       <block type="math_number">
         <field name="NUM">10</field>
       </block>
       <block type="math_arithmetic"></block>
+      <block type="math_number_property"></block>
+      <block type="math_trig"></block>
     </category>
     <category name="Variables" custom="VARIABLE">
     </category>

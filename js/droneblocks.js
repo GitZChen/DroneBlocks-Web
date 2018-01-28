@@ -46,15 +46,35 @@ function getMobileOS() {
 
 function previewMission() {
   
-  var code = Blockly.JavaScript.workspaceToCode(workspace);
+  var code = 'var mission="";'
+  code += Blockly.JavaScript.workspaceToCode(workspace);
   code = eval(code);
   
   var os = getMobileOS();
+  
   if(os == 'iOS') {
+    
     window.webkit.messageHandlers.observe.postMessage(code);
+    
   } else if(os == 'Android') {
-  	Android.confirmMission(Blockly.JavaScript.workspaceToCode(workspace));
+
+  	Android.confirmMission(code);
+    
+  } else {
+    
+    $("#mapPreviewModal").html("<iframe src='map_preview.html?code=" + escape(code) + "' width='100%' height='100%'></iframe>");
+    $("#mapPreviewModal").openModal();
+    
   }
+  
+}
+
+// Called from the map preview iframe
+function getMapPreviewCode() {
+  var code = 'var mission="";'
+  code += Blockly.JavaScript.workspaceToCode(workspace);
+  code = eval(code);
+  return code;
 }
 
 function toggleCodeView() {
@@ -65,7 +85,7 @@ function toggleCodeView() {
     $("#codeView").removeClass("hidden");
     $("#codeView").addClass("block");
     $("#codeViewButton a").html("X");
-    $("#code").html(PR.prettyPrintOne(Blockly.Python.workspaceToCode()));
+    $("#code").html(PR.prettyPrintOne(Blockly.Python.workspaceToCode(workspace)));
     $("#showCode").text("Hide Mission Code");
   } else {
     $("#showCode").text("Show Mission Code");
@@ -120,7 +140,7 @@ function saveBlocks() {
   BlocklyStorage.backupBlocks_(Blockly.getMainWorkspace());
   
   if(isCodeViewOpen) {
-    document.getElementById("code").innerHTML = PR.prettyPrintOne(Blockly.Python.workspaceToCode());
+    document.getElementById("code").innerHTML = PR.prettyPrintOne(Blockly.Python.workspaceToCode(workspace));
   }
   
   // Update text field for debugging
@@ -133,6 +153,22 @@ workspace.addChangeListener(saveBlocks);
 // Initialize some elements
 $(document).ready(function() {
   setTimeout(function() {
+    
+    // Let's detect iphone and make the category blocks shorter
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    
+    // Let's reduce the padding to 5px for the category blocks
+    // Not the prettiest way but we'll go with it for now
+    if(userAgent.match( /iPhone/i )) {
+      $("div#\\:1").css("cssText", "padding: 3px !important");
+      $("div#\\:2").css("cssText", "padding: 3px !important");
+      $("div#\\:3").css("cssText", "padding: 3px !important");
+      $("div#\\:4").css("cssText", "padding: 3px !important");
+      $("div#\\:5").css("cssText", "padding: 3px !important");
+      $("div#\\:6").css("cssText", "padding: 3px !important");
+      $("div#\\:7").css("cssText", "padding: 3px !important");
+      $("div#\\:8").css("cssText", "padding: 3px !important");
+    }
   
     $("#codeView").addClass("hidden");
     
@@ -149,12 +185,33 @@ $(document).ready(function() {
     });
   
     $("#saveMission").click(function() {
+      
+      // Clear out the mission title from the dialog
+      $("#title").text("");
+      
       // We only prompt on the first save of the mission
       if(missionId == null) {
+        
+        // Update the save text in the modal
+        var h6 = $("#saveMissionModal").find("h6");
+        h6.text("Please enter a mission title below and click SAVE");
+        h6.css({"color": "black"});
+        
         $('#saveMissionModal').openModal();
       } else {
         saveMission();
       }
+      
+    });
+    
+    // Save mission as a new one
+    $("#saveMissionAs").click(function() {
+      
+      // Null out the mission id so a new one will be created
+      missionId = null;
+      
+      // We need to figure out what to do if the user hits the cancel button
+      $('#saveMissionModal').openModal();
       
     });
     
@@ -180,16 +237,19 @@ $(document).ready(function() {
     
     // Let's setup the block canvas
     // See if this is a shared mission
-    if(getUrlParam("share") != null) {
+    if(getUrlParam("share") != null || getUrlParam("view") != null) {
   
       // This is local and not a global
       var id = getUrlParam("missionId");
       var missionsRef = ref.child("droneblocks/missions/" + id);
       
+      // Update the mission id global so this mission can be updated
+      missionId = id;
+      
       missionsRef.once("value", function(snapshot) {
         
         var xml = Blockly.Xml.textToDom(snapshot.val().missionXML);
-        Blockly.Xml.domToWorkspace(workspace, xml);
+        Blockly.Xml.domToWorkspace(xml, workspace);
         
         $("#missionTitle").text(snapshot.val().title);
 
@@ -220,4 +280,4 @@ function getUrlParam(param) {
       return sParameterName[1] === undefined ? true : sParameterName[1];
     }
   }
-};
+}

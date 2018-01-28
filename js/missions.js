@@ -10,6 +10,8 @@ $(document).ready(function() {
   });
   
   firebase.auth().onAuthStateChanged(function(user) {
+    
+    console.log("auth state changed: " + user.uid);
   
     if (user && !userId) {
     
@@ -20,7 +22,7 @@ $(document).ready(function() {
       usersRef.orderByChild("createdAt").on("child_added", function(snapshot) {
       
         var row = '<tr>';
-        row += '<td style="padding-left: 25px"><a href="index.html?share=1&missionId=' + snapshot.key + '">' + snapshot.val().title + '</a></td>';
+        row += '<td style="padding-left: 25px"><a href="index.html?view=1&missionId=' + snapshot.key + '">' + snapshot.val().title + '</a></td>';
         row += '<td>' + new Date(snapshot.val().createdAt) + '</td>';
         row += '<td>';
         row += '<a href="#!" onClick="shareMission(\'' + snapshot.key +'\');"><i class="material-icons">share</i></a>';
@@ -28,7 +30,7 @@ $(document).ready(function() {
         row += '<a href="#!" onClick="deleteMissionConfirm(\'' + snapshot.key +'\');"><i class="material-icons">delete</i></a>';
         row += '</td></tr>'
     
-        $("#tbody").append(row);
+        $("#tbody").prepend(row);
     
       });
     
