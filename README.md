@@ -5,6 +5,6 @@ Our diverse team of educators, programmers, and pilots use unique and exciting s
 
 Watch the App in action on [Youtube](https://youtu.be/nvaCTDGSs_M) or in this [safe web demo](https://dev.droneblocks.io)!
 
-If you like what you see, please consider download it at the link below:
+If you like what you see, please consider downloading it at the link below:
 
 [![Download on the App Store](https://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg)](https://itunes.apple.com/us/app/droneblocks/id1045826508?ls=1&mt=8)
